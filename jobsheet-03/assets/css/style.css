@@ -8,6 +8,7 @@
 body {
     font-family: "Segoe UI", Arial, sans-serif;
     background-color: #f4f0f7;
+    /* Background ungu sangat muda (lavender) */
     color: #333;
     line-height: 1.5;
 }
@@ -19,13 +20,16 @@ a {
 /* ===== Header & Navbar ===== */
 header {
     background-color: #2b1b3d;
+    /* Ungu gelap / plum elegan untuk header atas */
     display: flex;
     flex-direction: column;
 }
 
 .header-titles {
     text-align: left;
-    padding: 2rem 2.5rem; 
+    /* Teks rata kiri */
+    padding: 2rem 2.5rem;
+    /* Jarak agar sejajar dengan batas kotak putih utama */
     color: #fff;
 }
 
@@ -85,18 +89,35 @@ main {
     /* Bayangan sedikit keunguan */
 }
 
+/* ===== Gaya Judul Section (Garis Gradasi Modern) ===== */
 section {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 section h2 {
     color: #2b1b3d;
     /* Judul berwarna ungu gelap */
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #9d4edd;
-    /* Garis bawah warna ungu terang */
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    position: relative;
+    border-bottom: none;
+    /* Menghapus garis panjang standar */
+}
+
+section h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 65px;
+    /* Panjang garis gradasi */
+    height: 5px;
+    /* Ketebalan garis */
+    background: linear-gradient(90deg, #9d4edd, #e0c3fc);
+    /* Warna gradasi */
+    border-radius: 10px;
+    /* Ujung melengkung */
 }
 
 section p {
@@ -113,7 +134,7 @@ main section:nth-of-type(2) {
 main section:nth-of-type(2) h2 {
     grid-column: 1 / -1;
     /* Membuat judul membentang melewati semua kolom */
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 main section:nth-of-type(2) article {
@@ -154,7 +175,7 @@ form p {
 }
 
 form label {
-    display: block;
+    display: inline-block;
     margin-bottom: 0.35rem;
     font-weight: 600;
     color: #444;
@@ -191,7 +212,7 @@ form button[type="submit"]:hover {
 /* ===== Tabel Data ===== */
 .table-responsive {
     overflow-x: auto;
-    /* Penting untuk responsif jobsheet 3 */
+    /* Mencegah tabel merusak layout di layar kecil */
 }
 
 table {
@@ -294,6 +315,8 @@ footer {
 
     .header-titles {
         padding-right: 3rem;
+        padding-left: 1.5rem;
+        /* Penyesuaian jarak kiri di layar HP */
     }
 
     .nav-toggle-label {
@@ -309,16 +332,22 @@ footer {
     }
 
     .nav-toggle:checked~nav {
-        display: flex;
-        justify-content: center;
+        display: block;
+        /* Memaksa nav membentang penuh ke kiri */
     }
 
     header nav ul {
         flex-direction: column;
         width: 100%;
-        text-align: center;
+        text-align: left;
+        /* Teks menu rata kiri di HP */
         gap: 0.5rem;
-        padding-bottom: 1rem;
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    header nav a {
+        display: block;
+        /* Agar area klik tombol penuh menyamping */
     }
 
     main section:nth-of-type(2) {
@@ -333,6 +362,6 @@ footer {
     form input,
     form select {
         max-width: 100%;
-        /* Form memenuhi layar di versi mobile */
+        /* Form memenuhi layar di HP */
     }
 }
