@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toko Aplikasi Premium | Tambah Pelanggan</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-titles">
+            <h1>Toko Aplikasi Premium</h1>
+            <p>Web Pengelola Data Pelanggan</p>
+        </div>
+
+        <!-- Hamburger Menu Checkbox Hack -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+
+        <nav>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="../aplikasi/list.html">Data Aplikasi</a></li>
+                <li><a href="../aplikasi/tambah.html">Tambah Aplikasi</a></li>
+                <li><a href="../pelanggan/list.html">Data Pelanggan</a></li>
+                <li><a href="../pelanggan/tambah.html">Tambah Pelanggan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Registrasi Pelanggan Baru</h2>
+            <form>
+                <p>
+                    <label for="id_pelanggan">ID Pelanggan</label><br>
+                    <input type="text" id="id_pelanggan" name="id_pelanggan" placeholder="Contoh: CUST-003" required>
+                </p>
+                <p>
+                    <label for="nama">Nama Lengkap</label><br>
+                    <input type="text" id="nama" name="nama" placeholder="Nama lengkap pelanggan" required>
+                </p>
+                <p>
+                    <label for="kota">Kota Domisili</label><br>
+                    <input type="text" id="kota" name="kota" placeholder="Contoh: Jakarta">
+                </p>
+                <p>
+                    <label for="no_hp">No. WhatsApp</label><br>
+                    <input type="text" id="no_hp" name="no_hp" placeholder="08xxxxxxxxxx">
+                </p>
+                <p>
+                    <button type="submit">Daftarkan Pelanggan</button>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sistem Informasi Penjualan Aplikasi</p>
+    </footer>
+</body>
+
+</html>

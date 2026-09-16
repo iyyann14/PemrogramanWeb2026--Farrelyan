@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toko Aplikasi Premium | Tambah Aplikasi</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-titles">
+            <h1>Toko Aplikasi Premium</h1>
+            <p>Web Pengelola Data Aplikasi Premium Online</p>
+        </div>
+
+        <!-- Hamburger Menu Checkbox Hack -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+
+        <nav>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="../aplikasi/list.html">Data Aplikasi</a></li>
+                <li><a href="../aplikasi/tambah.html">Tambah Aplikasi</a></li>
+                <li><a href="../pelanggan/list.html">Data Pelanggan</a></li>
+                <li><a href="../pelanggan/tambah.html">Tambah Pelanggan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Tambah Aplikasi Baru</h2>
+            <form>
+                <p>
+                    <label for="nama_app">Nama Aplikasi</label><br>
+                    <input type="text" id="nama_app" name="nama_app" placeholder="Contoh: KasirKu Pro" required>
+                </p>
+                <p>
+                    <label for="kategori">Kategori</label><br>
+                    <select id="kategori" name="kategori">
+                        <option value="bisnis">Bisnis & Keuangan</option>
+                        <option value="pendidikan">Pendidikan</option>
+                        <option value="kesehatan">Kesehatan</option>
+                        <option value="kuliner">Kuliner & Resto</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="versi">Versi</label><br>
+                    <input type="text" id="versi" name="versi" placeholder="Contoh: v1.0.0" required>
+                </p>
+                <p>
+                    <label for="harga">Harga (Rp)</label><br>
+                    <input type="number" id="harga" name="harga" min="0" placeholder="100000" required>
+                </p>
+                <p>
+                    <label for="deskripsi">Deskripsi Singkat</label><br>
+                    <input type="text" id="deskripsi" name="deskripsi" placeholder="Fitur unggulan aplikasi...">
+                </p>
+                <p>
+                    <button type="submit">Simpan Aplikasi</button>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sistem Informasi Penjualan Aplikasi</p>
+    </footer>
+</body>
+
+</html>
