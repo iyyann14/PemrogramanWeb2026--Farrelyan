@@ -2,27 +2,26 @@
 $page_title = "Beranda";
 include __DIR__ . '/includes/header.php';
 
-$totalBuku = count($_SESSION['buku'] ?? []);
-$totalAnggota = count($_SESSION['anggota'] ?? []);
+$totalAplikasi = count($_SESSION['aplikasi'] ?? []);
+$totalPelanggan = count($_SESSION['pelanggan'] ?? []);
 ?>
-        <section>
-            <h2>Selamat Datang di Sistem Perpustakaan Mini</h2>
-            <p>Aplikasi sederhana untuk mengelola data buku dan anggota perpustakaan.</p>
-        </section>
-
-        <section>
-            <h2>Ringkasan</h2>
-            <article>
-                <h3>Total Buku</h3>
-                <p><?php echo $totalBuku; ?></p>
-            </article>
-            <article>
-                <h3>Total Anggota</h3>
-                <p><?php echo $totalAnggota; ?></p>
-            </article>
-            <article>
-                <h3>Sedang Dipinjam</h3>
-                <p>0</p>
-            </article>
-        </section>
+<section>
+    <h2>Dashboard</h2>
+    <p>Selamat Datang di Web Pengelola Data Penjualan Aplikasi</p>
+</section>
+<section>
+    <h2>Statistik Penjualan</h2>
+    <article>
+        <h3>Total Aplikasi</h3>
+        <p><?php echo $totalAplikasi; ?></p>
+    </article>
+    <article>
+        <h3>Total Pelanggan</h3>
+        <p><?php echo $totalPelanggan; ?></p>
+    </article>
+    <article>
+        <h3>Transaksi Hari Ini</h3>
+        <p>0</p>
+    </article>
+</section>
 <?php include __DIR__ . '/includes/footer.php'; ?>
