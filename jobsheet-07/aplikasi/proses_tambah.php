@@ -9,22 +9,31 @@ $deskripsi = trim($_POST['deskripsi'] ?? '');
 
 $errors = [];
 
+// Validasi Kode App Menggunakan preg_match ide latihan 1
 if ($kodeApp === '') {
-    $errors[] = "Kode App wajib diisi.";
-}
-if ($namaApp === '') {
-    $errors[] = "Nama Aplikasi wajib diisi.";
-}
-if (!is_numeric($harga) || $harga < 0) {
-    $errors[] = "Harga harus diisi dengan angka positif.";
+    $errors[] = "Kode App Wajib Diisi";
+} else if (!preg_match('/^[a-zA-Z0-9-]+$/', $kodeApp)) {
+    $errors[] = "Kode App Hanya Boleh Berisi Huruf, Angka, dan Tanda Hubung";
 }
 
+// Validasi Nama Aplikasi
+if ($namaApp === '') {
+    $errors[] = "Nama Aplikasi Wajib Diisi";
+}
+
+// Validasi Harga
+if (!is_numeric($harga) || $harga < 0) {
+    $errors[] = "Harga Harus Diisi Dengan Angka Positif";
+}
+
+// Jika Error
 if (!empty($errors)) {
-    $_SESSION['flash'] = ['type' => 'error', 'pesan' => implode(' ', $errors)];
+    $_SESSION['flash'] = ['type' => 'error', 'pesan' => implode('<br>', $errors)];
     header('Location: tambah.php');
     exit;
 }
 
+// Jika Lolos
 if (!isset($_SESSION['aplikasi'])) {
     $_SESSION['aplikasi'] = [];
 }
