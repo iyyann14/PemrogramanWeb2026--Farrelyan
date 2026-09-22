@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toko Aplikasi Premium | Data Aplikasi</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-titles">
+            <h1>Toko Aplikasi Premium</h1>
+            <p>Web Pengelola Data Aplikasi Premium Online</p>
+        </div>
+        <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="list.html" class="active">Data Aplikasi</a></li>
+                <li><a href="tambah.html">Tambah Aplikasi</a></li>
+                <li><a href="../pelanggan/list.html">Data Pelanggan</a></li>
+                <li><a href="../pelanggan/tambah.html">Tambah Pelanggan</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <section>
+            <h2>Daftar Aplikasi</h2>
+
+            <!-- Pastikan blok action-bar ini ada -->
+            <div class="action-bar"
+                style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+                <button type="button" id="btn-reload" class="btn-submit">Muat Ulang Data</button>
+
+                <div class="search-box" style="margin-bottom: 0;">
+                    <label for="search-input">Cari Nama Aplikasi</label>
+                    <input type="text" id="search-input" placeholder="Ketik nama aplikasi...">
+                </div>
+            </div>
+
+            <p id="loading-indicator" style="display:none; margin-bottom: 1rem; font-style: italic;">Memuat Data...</p>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KODE APP</th>
+                            <th>NAMA APLIKASI</th>
+                            <th>KATEGORI</th>
+                            <th>HARGA / LISENSI</th>
+                            <th>STATUS</th>
+                            <th>AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Baris diisi dinamis oleh aplikasi.js -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Sistem Informasi Penjualan Aplikasi &mdash; Jobsheet 6</p>
+    </footer>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/aplikasi.js"></script>
+</body>
+
+</html>

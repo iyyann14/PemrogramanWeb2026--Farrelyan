@@ -1,0 +1,359 @@
+/* ===== Reset & Base ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f4f0f7;
+    /* Ungu lavender */
+    color: #333;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ===== Header & Navbar ===== */
+header {
+    background-color: #2b1b3d;
+    /* Ungu gelap */
+    display: flex;
+    flex-direction: column;
+}
+
+.header-titles {
+    text-align: left;
+    padding: 2rem 2.5rem;
+    color: #fff;
+}
+
+.header-titles h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.header-titles p {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #d8cce6;
+}
+
+header nav {
+    background-color: #3b2553;
+    display: flex;
+    justify-content: center;
+    padding: 0.8rem 1rem;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+header nav a {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover,
+header nav a.active {
+    background-color: #9d4edd;
+    box-shadow: 0 2px 8px rgba(157, 78, 221, 0.4);
+}
+
+/* ===== Main Layout ===== */
+main {
+    background-color: #fff;
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(43, 27, 61, 0.08);
+}
+
+section {
+    margin-bottom: 2.5rem;
+}
+
+section h2 {
+    color: #2b1b3d;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    position: relative;
+}
+
+section h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 65px;
+    height: 5px;
+    background: linear-gradient(90deg, #9d4edd, #e0c3fc);
+    border-radius: 10px;
+}
+
+section p {
+    color: #4a4a4a;
+}
+
+/* ===== Kartu Statistik ===== */
+main section:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+main section:nth-of-type(2) h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 1.5rem;
+}
+
+main section:nth-of-type(2) article {
+    background-color: #faf8fc;
+    border: 1px solid #e4dced;
+    border-left: 5px solid #7b1fa2;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+    transition: transform 0.2s ease;
+}
+
+main section:nth-of-type(2) article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(123, 31, 162, 0.1);
+}
+
+main section:nth-of-type(2) article h3 {
+    font-size: 0.85rem;
+    color: #6a4a87;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+main section:nth-of-type(2) article p {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #3b2553;
+}
+
+/* ===== Form & Inputs ===== */
+form p {
+    margin-bottom: 1rem;
+}
+
+form label {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+    color: #444;
+}
+
+form input,
+form select {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.65rem;
+    border: 1px solid #cdd4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn-submit {
+    background-color: #9d4edd;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #7b1fa2;
+}
+
+/* ===== Fitur Jobsheet 6 (Search, Loading & Error Validasi) ===== */
+.search-box {
+    margin-bottom: 1rem;
+}
+
+.search-box label {
+    font-weight: 600;
+    color: #444;
+    margin-right: 0.5rem;
+}
+
+.search-box input {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cdd4da;
+    border-radius: 4px;
+}
+
+.error {
+    display: block;
+    color: #e63946;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+#loading-indicator {
+    color: #7b1fa2;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* ===== Tabel Data ===== */
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+td {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid #e2e6ea;
+}
+
+thead {
+    background-color: #2b1b3d;
+    color: #fff;
+}
+
+th {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f6fc;
+}
+
+tbody tr:hover {
+    background-color: #f1eaf7;
+}
+
+td button {
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+td button.btn-edit {
+    background-color: #9d4edd;
+    color: #fff;
+    margin-right: 0.3rem;
+}
+
+td button.btn-hapus {
+    background-color: #e63946;
+    color: #fff;
+}
+
+/* ===== Footer ===== */
+footer {
+    background-color: #2b1b3d;
+    text-align: center;
+    padding: 1.5rem;
+    color: #a996bd;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+}
+
+/* ===== Hamburger Menu (JS-driven dari Jobsheet 6) ===== */
+.nav-toggle-label {
+    display: none;
+    font-size: 1.6rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===== Responsive Breakpoints ===== */
+@media (max-width: 768px) {
+    main section:nth-of-type(2) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        position: relative;
+    }
+
+    .header-titles {
+        padding-right: 3rem;
+        padding-left: 1.5rem;
+    }
+
+    .nav-toggle-label {
+        display: block;
+        position: absolute;
+        top: 2rem;
+        right: 1.5rem;
+    }
+
+    header nav {
+        display: none;
+        width: 100%;
+        order: 3;
+        margin-top: 1rem;
+    }
+
+    header nav.nav-open {
+        display: block;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: left;
+        gap: 0.5rem;
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    header nav a {
+        display: block;
+    }
+
+    main section:nth-of-type(2) {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    form input,
+    form select {
+        max-width: 100%;
+    }
+}

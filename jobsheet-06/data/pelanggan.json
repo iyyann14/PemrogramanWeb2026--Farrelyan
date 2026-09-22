@@ -1,0 +1,6 @@
+[
+    { "id_pelanggan": "CUST-001", "nama": "Reza Pahlevi", "kota": "Surabaya", "aplikasi": "Capcut Pro" },
+    { "id_pelanggan": "CUST-002", "nama": "Muhammad Zasky", "kota": "Jombang", "aplikasi": "BCA Mobile" },
+    { "id_pelanggan": "CUST-003", "nama": "Ahmad Rifqi", "kota": "Malang", "aplikasi": "Netflix" },
+    { "id_pelanggan": "CUST-004", "nama": "Dewi Lestari", "kota": "Malang", "aplikasi": "Canva" }
+]

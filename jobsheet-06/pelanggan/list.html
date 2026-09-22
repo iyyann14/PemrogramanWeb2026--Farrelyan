@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toko Aplikasi Premium | Data Pelanggan</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-titles">
+            <h1>Toko Aplikasi Premium</h1>
+            <p>Web Pengelola Data Pelanggan Toko Aplikasi Premium</p>
+        </div>
+        <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="../aplikasi/list.html">Data Aplikasi</a></li>
+                <li><a href="../aplikasi/tambah.html">Tambah Aplikasi</a></li>
+                <li><a href="list.html" class="active">Data Pelanggan</a></li>
+                <li><a href="tambah.html">Tambah Pelanggan</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Daftar Pelanggan Aktif</h2>
+            <div style="margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center;">
+                <button type="button" id="btn-reload" class="btn-submit">Muat Ulang Data</button>
+                <div class="search-box" style="margin-bottom: 0;">
+                    <label for="search-input">Cari Nama Aplikasi</label>
+                    <input type="text" id="search-input" placeholder="Ketik nama aplikasi...">
+                </div>
+            </div>
+            <p id="loading-indicator" style="display:none;">Memuat data...</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Pelanggan</th>
+                            <th>Nama Lengkap</th>
+                            <th>Kota</th>
+                            <th>Aplikasi</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Baris diisi dinamis oleh assets/js/pelanggan.js -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Sistem Informasi Penjualan Aplikasi &mdash; Jobsheet 6</p>
+    </footer>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pelanggan.js"></script>
+</body>
+
+</html>

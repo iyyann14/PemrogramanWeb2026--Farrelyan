@@ -1,0 +1,7 @@
+[
+    { "kode": "APP001", "nama": "Canva", "kategori": "1 Bulan", "harga": "Rp 15.000", "status": "Ready"},
+    { "kode": "APP002", "nama": "Capcut Pro", "kategori": "1 Bulan", "harga": "Rp 75.000", "status": "Sold"},
+    { "kode": "APP003", "nama": "BCA Mobile", "kategori": "6 Bulan", "harga": "Rp 1.120.000", "status": "Ready"},
+    { "kode": "APP004", "nama": "Akun Kopi Kenangan", "kategori": "1 Tahun", "harga": "Rp 250.000", "status": "Ready"},
+    { "kode": "APP005", "nama": "Netflix", "kategori": "Seumur Hidup", "harga": "Rp 750.000", "status": "Ready"}
+]
