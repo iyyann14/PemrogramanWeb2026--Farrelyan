@@ -1,17 +1,18 @@
 <?php
 session_start();
 
+$idPelanggan = trim($_POST['id_pelanggan'] ?? '');
 $nama = trim($_POST['nama'] ?? '');
-$noAnggota = trim($_POST['no_anggota'] ?? '');
-$alamat = trim($_POST['alamat'] ?? '');
+$kota = trim($_POST['kota'] ?? '');
 $noHp = trim($_POST['no_hp'] ?? '');
 
 $errors = [];
-if ($nama === '') {
-    $errors[] = "Nama wajib diisi.";
+
+if ($idPelanggan === '') {
+    $errors[] = "ID Pelanggan wajib diisi.";
 }
-if ($noAnggota === '') {
-    $errors[] = "No. Anggota wajib diisi.";
+if ($nama === '') {
+    $errors[] = "Nama Lengkap wajib diisi.";
 }
 
 if (!empty($errors)) {
@@ -20,17 +21,17 @@ if (!empty($errors)) {
     exit;
 }
 
-if (!isset($_SESSION['anggota'])) {
-    $_SESSION['anggota'] = [];
+if (!isset($_SESSION['pelanggan'])) {
+    $_SESSION['pelanggan'] = [];
 }
 
-$_SESSION['anggota'][] = [
+$_SESSION['pelanggan'][] = [
+    'id_pelanggan' => $idPelanggan,
     'nama' => $nama,
-    'no_anggota' => $noAnggota,
-    'alamat' => $alamat,
+    'kota' => $kota,
     'no_hp' => $noHp,
 ];
 
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Anggota berhasil ditambahkan.'];
+$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Pelanggan berhasil didaftarkan.'];
 header('Location: list.php');
 exit;

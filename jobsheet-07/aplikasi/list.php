@@ -5,46 +5,44 @@ include __DIR__ . '/../includes/header.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-// Tetap menggunakan session buku agar backend JS7 berjalan normal
-$daftarBuku = $_SESSION['buku'] ?? [];
+$daftarAplikasi = $_SESSION['aplikasi'] ?? [];
 ?>
 <section>
     <h2>Daftar Aplikasi</h2>
     <?php if ($flash): ?>
         <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
     <?php endif; ?>
-
     <div class="search-box">
         <label for="search-input">Cari Nama Aplikasi</label>
         <input type="text" id="search-input" placeholder="Ketik nama aplikasi...">
     </div>
-
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
+                    <th>Kode App</th>
                     <th>Nama Aplikasi</th>
-                    <th>Developer</th>
-                    <th>Tahun Rilis</th>
-                    <th>Stok Lisensi</th>
+                    <th>Kategori</th>
+                    <th>Harga</th>
+                    <th>Deskripsi</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if (empty($daftarBuku)): ?>
+                <?php if (empty($daftarAplikasi)): ?>
                     <tr>
-                        <td colspan="5">Belum ada data aplikasi. Silakan tambah lewat menu "Tambah Aplikasi".</td>
+                        <td colspan="6">Belum ada data aplikasi. Silakan tambah lewat menu "Tambah Aplikasi".</td>
                     </tr>
                 <?php else: ?>
-                    <?php foreach ($daftarBuku as $buku): ?>
+                    <?php foreach ($daftarAplikasi as $app): ?>
                         <tr>
-                            <!-- Tetap memanggil key asli dari backend -->
-                            <td><?php echo $buku['judul']; ?></td>
-                            <td><?php echo $buku['pengarang']; ?></td>
-                            <td><?php echo $buku['tahun']; ?></td>
-                            <td><?php echo $buku['stok']; ?></td>
+                            <td><?php echo htmlspecialchars($app['kode_app']); ?></td>
+                            <td><?php echo htmlspecialchars($app['nama_app']); ?></td>
+                            <td><?php echo htmlspecialchars($app['kategori']); ?></td>
+                            <td>Rp <?php echo number_format($app['harga'], 0, ',', '.'); ?></td>
+                            <td><?php echo htmlspecialchars($app['deskripsi']); ?></td>
                             <td>
-                                <button type="button">Edit</button>
+                                <button type="button" class="btn-edit">Edit</button>
                                 <button type="button" class="btn-hapus">Hapus</button>
                             </td>
                         </tr>

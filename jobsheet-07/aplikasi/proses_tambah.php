@@ -1,27 +1,22 @@
 <?php
 session_start();
 
-$judul = trim($_POST['judul'] ?? '');
-$pengarang = trim($_POST['pengarang'] ?? '');
-$tahun = $_POST['tahun'] ?? '';
-$isbn = trim($_POST['isbn'] ?? '');
-$stok = $_POST['stok'] ?? '';
+$kodeApp = trim($_POST['kode_app'] ?? '');
+$namaApp = trim($_POST['nama_app'] ?? '');
 $kategori = trim($_POST['kategori'] ?? '');
+$harga = $_POST['harga'] ?? '';
+$deskripsi = trim($_POST['deskripsi'] ?? '');
 
-// Validasi server-side — wajib ada meski sudah divalidasi JS di Jobsheet 5,
-// karena validasi client bisa dilewati (nonaktifkan JS / kirim request manual).
 $errors = [];
-if ($judul === '') {
-    $errors[] = "Judul wajib diisi.";
+
+if ($kodeApp === '') {
+    $errors[] = "Kode App wajib diisi.";
 }
-if ($pengarang === '') {
-    $errors[] = "Pengarang wajib diisi.";
+if ($namaApp === '') {
+    $errors[] = "Nama Aplikasi wajib diisi.";
 }
-if (!is_numeric($tahun) || $tahun < 1900 || $tahun > 2026) {
-    $errors[] = "Tahun harus di antara 1900-2026.";
-}
-if (!is_numeric($stok) || $stok < 0) {
-    $errors[] = "Stok tidak boleh negatif.";
+if (!is_numeric($harga) || $harga < 0) {
+    $errors[] = "Harga harus diisi dengan angka positif.";
 }
 
 if (!empty($errors)) {
@@ -30,19 +25,18 @@ if (!empty($errors)) {
     exit;
 }
 
-if (!isset($_SESSION['buku'])) {
-    $_SESSION['buku'] = [];
+if (!isset($_SESSION['aplikasi'])) {
+    $_SESSION['aplikasi'] = [];
 }
 
-$_SESSION['buku'][] = [
-    'judul' => $judul,
-    'pengarang' => $pengarang,
-    'tahun' => (int) $tahun,
-    'isbn' => $isbn,
-    'stok' => (int) $stok,
+$_SESSION['aplikasi'][] = [
+    'kode_app' => $kodeApp,
+    'nama_app' => $namaApp,
     'kategori' => $kategori,
+    'harga' => (int) $harga,
+    'deskripsi' => $deskripsi,
 ];
 
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Buku berhasil ditambahkan.'];
+$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Aplikasi berhasil ditambahkan.'];
 header('Location: list.php');
 exit;

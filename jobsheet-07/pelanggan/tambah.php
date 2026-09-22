@@ -10,19 +10,18 @@ unset($_SESSION['flash']);
     <?php if ($flash): ?>
         <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
     <?php endif; ?>
-
     <form id="form-tambah" method="post" action="proses_tambah.php">
+        <p>
+            <label for="id_pelanggan">ID Pelanggan</label><br>
+            <input type="text" id="id_pelanggan" name="id_pelanggan" placeholder="Contoh: CUST-003" required>
+        </p>
         <p>
             <label for="nama">Nama Lengkap</label><br>
             <input type="text" id="nama" name="nama" placeholder="Nama lengkap pelanggan" required>
         </p>
         <p>
-            <label for="no_anggota">ID Pelanggan</label><br>
-            <input type="text" id="no_anggota" name="no_anggota" placeholder="Contoh: CUST-001" required>
-        </p>
-        <p>
-            <label for="alamat">Kota Domisili</label><br>
-            <input type="text" id="alamat" name="alamat" placeholder="Contoh: Jakarta">
+            <label for="kota">Kota Domisili</label><br>
+            <input type="text" id="kota" name="kota" placeholder="Contoh: Jakarta">
         </p>
         <p>
             <label for="no_hp">No. WhatsApp</label><br>
