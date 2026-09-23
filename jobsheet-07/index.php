@@ -8,7 +8,13 @@ $totalPelanggan = count($_SESSION['pelanggan'] ?? []);
 <section>
     <h2>Dashboard</h2>
     <p>Selamat Datang di Web Pengelola Data Penjualan Aplikasi</p>
+
+    <!-- Form Tombol Reset -->
+    <form action="reset_session.php" method="post" style="margin-top: 1.5rem;" onsubmit="return confirm('Peringatan: Yakin Ingin Menghapus Seluruh Data Aplikasi dan Pelanggan?');">
+        <button type="submit">Reset Semua Data</button>
+    </form>
 </section>
+
 <section>
     <h2>Statistik Penjualan</h2>
     <article>
