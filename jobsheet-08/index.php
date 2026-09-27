@@ -1,15 +1,17 @@
 <?php
+require __DIR__ . '/includes/koneksi.php';
 $page_title = "Beranda";
 include __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/koneksi.php';
 
 $totalAplikasi = $pdo->query("SELECT COUNT(*) FROM aplikasi")->fetchColumn();
 $totalPelanggan = $pdo->query("SELECT COUNT(*) FROM pelanggan")->fetchColumn();
 ?>
+
 <section>
     <h2>Dashboard</h2>
     <p>Selamat Datang di Web Pengelola Data Penjualan Aplikasi</p>
 </section>
+
 <section>
     <h2>Statistik Penjualan</h2>
     <article>
@@ -25,4 +27,5 @@ $totalPelanggan = $pdo->query("SELECT COUNT(*) FROM pelanggan")->fetchColumn();
         <p>0</p>
     </article>
 </section>
+
 <?php include __DIR__ . '/includes/footer.php'; ?>
