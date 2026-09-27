@@ -26,13 +26,14 @@ $daftarAplikasi = $pdo->query("SELECT * FROM aplikasi ORDER BY id DESC")->fetchA
                     <th>Kategori</th>
                     <th>Harga</th>
                     <th>Deskripsi</th>
+                    <th>Tanggal Ditambahkan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($daftarAplikasi)): ?>
                     <tr>
-                        <td colspan="6">Belum ada data aplikasi. Silakan tambah lewat menu "Tambah Aplikasi".</td>
+                        <td colspan="7">Belum ada data aplikasi. Silakan tambah lewat menu "Tambah Aplikasi".</td>
                     </tr>
                 <?php else: ?>
                     <?php foreach ($daftarAplikasi as $app): ?>
@@ -42,6 +43,7 @@ $daftarAplikasi = $pdo->query("SELECT * FROM aplikasi ORDER BY id DESC")->fetchA
                             <td><?php echo htmlspecialchars($app['kategori']); ?></td>
                             <td>Rp <?php echo number_format($app['harga'], 0, ',', '.'); ?></td>
                             <td><?php echo htmlspecialchars($app['deskripsi']); ?></td>
+                            <td><?php echo date('d-m-Y H:i', strtotime($app['tanggal_ditambahkan'])); ?></td>
                             <td>
                                 <button type="button" class="btn-edit">Edit</button>
                                 <button type="button" class="btn-hapus">Hapus</button>
