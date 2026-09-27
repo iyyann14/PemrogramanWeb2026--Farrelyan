@@ -28,8 +28,8 @@ if (!empty($errors)) {
 
 try {
     $stmt = $pdo->prepare(
-        "INSERT INTO aplikasi (kode_app, nama_app, kategori, harga, deskripsi) 
-         VALUES (:kode_app, :nama_app, :kategori, :harga, :deskripsi) 
+        "INSERT INTO aplikasi (kode_app, nama_app, kategori, harga, deskripsi)
+         VALUES (:kode_app, :nama_app, :kategori, :harga, :deskripsi)
          RETURNING id"
     );
 
@@ -45,7 +45,12 @@ try {
     header('Location: list.php');
     exit;
 } catch (PDOException $e) {
-    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menyimpan: ' . $e->getMessage()];
+    // Cek apakah error disebabkan oleh pelanggaran UNIQUE constraint (kode 23505)
+    if ($e->getCode() == '23505') {
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Kode App "' . htmlspecialchars($kodeApp) . '" Sudah Digunakan. Silakan Gunakan Kode Lain.'];
+    } else {
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menyimpan: ' . $e->getMessage()];
+    }
     header('Location: tambah.php');
     exit;
 }
