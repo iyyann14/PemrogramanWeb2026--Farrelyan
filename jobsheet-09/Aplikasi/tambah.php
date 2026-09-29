@@ -5,41 +5,39 @@ $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 ?>
 <section>
-    <h2>Tambah Aplikasi</h2>
+    <h2>Tambah Aplikasi Baru</h2>
     <?php if ($flash): ?>
         <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
     <?php endif; ?>
     <form id="form-tambah" method="post" action="proses_tambah.php">
         <p>
-            <label for="nama_aplikasi">Nama Aplikasi</label><br>
-            <input type="text" id="nama_aplikasi" name="nama_aplikasi" required>
+            <label for="kode_app">Kode App</label><br>
+            <input type="text" id="kode_app" name="kode_app" placeholder="Contoh: APP001" required>
         </p>
         <p>
-            <label for="developer">Developer</label><br>
-            <input type="text" id="developer" name="developer" required>
-        </p>
-        <p>
-            <label for="tahun_rilis">Tahun Rilis</label><br>
-            <input type="number" id="tahun_rilis" name="tahun_rilis" min="1990" max="2026" required>
-        </p>
-        <p>
-            <label for="versi">Versi</label><br>
-            <input type="text" id="versi" name="versi">
-        </p>
-        <p>
-            <label for="ukuran_mb">Ukuran (MB)</label><br>
-            <input type="number" id="ukuran_mb" name="ukuran_mb" min="0" required>
+            <label for="nama_app">Nama Aplikasi</label><br>
+            <input type="text" id="nama_app" name="nama_app" placeholder="Contoh: KasirKu Pro" required>
         </p>
         <p>
             <label for="kategori">Kategori</label><br>
             <select id="kategori" name="kategori">
-                <option value="games">Games</option>
-                <option value="produktivitas">Produktivitas</option>
-                <option value="utilitas">Utilitas</option>
+                <option value="7 Hari">7 Hari</option>
+                <option value="1 Bulan">1 Bulan</option>
+                <option value="6 Bulan">6 Bulan</option>
+                <option value="1 Tahun">1 Tahun</option>
+                <option value="Seumur Hidup">Seumur Hidup</option>
             </select>
         </p>
         <p>
-            <button type="submit">Simpan</button>
+            <label for="harga">Harga (Rp)</label><br>
+            <input type="number" id="harga" name="harga" min="0" placeholder="100000" required>
+        </p>
+        <p>
+            <label for="deskripsi">Deskripsi Singkat</label><br>
+            <input type="text" id="deskripsi" name="deskripsi" placeholder="Fitur unggulan aplikasi...">
+        </p>
+        <p>
+            <button type="submit">Simpan Aplikasi</button>
         </p>
     </form>
 </section>

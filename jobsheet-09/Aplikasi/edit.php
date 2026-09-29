@@ -2,7 +2,6 @@
 $page_title = "Edit Aplikasi";
 include __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/koneksi.php';
-
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
@@ -21,7 +20,6 @@ if (!$aplikasi) {
     exit;
 }
 ?>
-
 <section>
     <h2>Edit Aplikasi</h2>
     <?php if ($flash): ?>
@@ -30,37 +28,35 @@ if (!$aplikasi) {
     <form id="form-tambah" method="post" action="proses_edit.php">
         <input type="hidden" name="id" value="<?php echo $aplikasi['id']; ?>">
         <p>
-            <label for="nama_aplikasi">Nama Aplikasi</label><br>
-            <input type="text" id="nama_aplikasi" name="nama_aplikasi" value="<?php echo $aplikasi['nama_aplikasi']; ?>" required>
+            <label for="kode_app">Kode App</label><br>
+            <input type="text" id="kode_app" name="kode_app" value="<?php echo htmlspecialchars($aplikasi['kode_app']); ?>" required>
         </p>
         <p>
-            <label for="developer">Developer</label><br>
-            <input type="text" id="developer" name="developer" value="<?php echo $aplikasi['developer']; ?>" required>
-        </p>
-        <p>
-            <label for="tahun_rilis">Tahun Rilis</label><br>
-            <input type="number" id="tahun_rilis" name="tahun_rilis" min="1990" max="2026" value="<?php echo $aplikasi['tahun_rilis']; ?>" required>
-        </p>
-        <p>
-            <label for="versi">Versi</label><br>
-            <input type="text" id="versi" name="versi" value="<?php echo $aplikasi['versi']; ?>">
-        </p>
-        <p>
-            <label for="ukuran_mb">Ukuran (MB)</label><br>
-            <input type="number" id="ukuran_mb" name="ukuran_mb" min="0" value="<?php echo $aplikasi['ukuran_mb']; ?>" required>
+            <label for="nama_app">Nama Aplikasi</label><br>
+            <input type="text" id="nama_app" name="nama_app" value="<?php echo htmlspecialchars($aplikasi['nama_app']); ?>" required>
         </p>
         <p>
             <label for="kategori">Kategori</label><br>
             <select id="kategori" name="kategori">
-                <?php foreach (['games' => 'Games', 'produktivitas' => 'Produktivitas', 'utilitas' => 'Utilitas'] as $value => $label): ?>
-                    <option value="<?php echo $value; ?>" <?php echo $aplikasi['kategori'] === $value ? 'selected' : ''; ?>><?php echo $label; ?></option>
+                <?php
+                $opsi_kategori = ['7 Hari', '1 Bulan', '6 Bulan', '1 Tahun', 'Seumur Hidup'];
+                foreach ($opsi_kategori as $opsi):
+                ?>
+                    <option value="<?php echo $opsi; ?>" <?php echo $aplikasi['kategori'] === $opsi ? 'selected' : ''; ?>><?php echo $opsi; ?></option>
                 <?php endforeach; ?>
             </select>
+        </p>
+        <p>
+            <label for="harga">Harga (Rp)</label><br>
+            <input type="number" id="harga" name="harga" min="0" value="<?php echo htmlspecialchars($aplikasi['harga']); ?>" required>
+        </p>
+        <p>
+            <label for="deskripsi">Deskripsi Singkat</label><br>
+            <input type="text" id="deskripsi" name="deskripsi" value="<?php echo htmlspecialchars($aplikasi['deskripsi']); ?>">
         </p>
         <p>
             <button type="submit">Update</button>
         </p>
     </form>
 </section>
-
 <?php include __DIR__ . '/../includes/footer.php'; ?>

@@ -32,4 +32,4 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
             </ul>
         </nav>
     </header>
-    <main></main>
+    <main>

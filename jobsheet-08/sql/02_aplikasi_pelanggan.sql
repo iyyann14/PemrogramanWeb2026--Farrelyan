@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS aplikasi;
-CREATE TABLE aplikasi (
+CREATE TABLE IF NOT EXISTS aplikasi (
     id SERIAL PRIMARY KEY,
     kode_app VARCHAR(50) NOT NULL UNIQUE,
     nama_app VARCHAR(255) NOT NULL,
@@ -8,11 +7,12 @@ CREATE TABLE aplikasi (
     deskripsi TEXT
 );
 
-DROP TABLE IF EXISTS pelanggan;
-CREATE TABLE pelanggan (
+CREATE TABLE IF NOT EXISTS pelanggan (
     id SERIAL PRIMARY KEY,
+    id_pelanggan VARCHAR(50) NOT NULL UNIQUE,
     nama VARCHAR(255) NOT NULL,
-    no_pelanggan VARCHAR(50) NOT NULL UNIQUE,
-    email VARCHAR(255),
+    kota VARCHAR(100),
     no_hp VARCHAR(30)
 );
+
+ALTER TABLE aplikasi ADD COLUMN tanggal_ditambahkan TIMESTAMP DEFAULT NOW();

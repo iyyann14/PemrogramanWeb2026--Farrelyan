@@ -262,7 +262,9 @@ td a.btn-edit:hover {
     opacity: 0.85;
 }
 
-td button.btn-hapus {
+td form.form-hapus button.btn-hapus {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
     background-color: #e63946;
     color: #fff;
 }

@@ -2,7 +2,6 @@
 $page_title = "Daftar Aplikasi";
 include __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/koneksi.php';
-
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
@@ -12,15 +11,16 @@ $offset = ($page - 1) * $perPage;
 $keyword = trim($_GET['q'] ?? '');
 
 if ($keyword !== '') {
-    $hitung = $pdo->prepare("SELECT COUNT(*) FROM aplikasi WHERE nama_aplikasi ILIKE :kw");
+    $hitung = $pdo->prepare("SELECT COUNT(*) FROM aplikasi WHERE nama_app ILIKE :kw");
     $hitung->execute(['kw' => '%' . $keyword . '%']);
     $totalRows = $hitung->fetchColumn();
-    $stmt = $pdo->prepare("SELECT * FROM aplikasi WHERE nama_aplikasi ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
+    $stmt = $pdo->prepare("SELECT * FROM aplikasi WHERE nama_app ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
     $stmt->bindValue('kw', '%' . $keyword . '%');
 } else {
     $totalRows = $pdo->query("SELECT COUNT(*) FROM aplikasi")->fetchColumn();
     $stmt = $pdo->prepare("SELECT * FROM aplikasi ORDER BY id DESC LIMIT :limit OFFSET :offset");
 }
+
 $stmt->bindValue('limit', $perPage, PDO::PARAM_INT);
 $stmt->bindValue('offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
@@ -36,7 +36,7 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
         <form method="get" action="list.php">
             <span>
                 <label for="search-input">Cari Nama Aplikasi</label><br>
-                <input type="text" id="search-input" name="q" value="<?php echo $keyword; ?>" placeholder="Ketik nama aplikasi...">
+                <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Ketik nama aplikasi...">
             </span>
             <button type="submit">Cari</button>
         </form>
@@ -45,25 +45,27 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
         <table>
             <thead>
                 <tr>
+                    <th>Kode App</th>
                     <th>Nama Aplikasi</th>
-                    <th>Developer</th>
-                    <th>Tahun Rilis</th>
-                    <th>Ukuran (MB)</th>
+                    <th>Kategori</th>
+                    <th>Harga</th>
+                    <th>Deskripsi</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($daftarAplikasi)): ?>
                     <tr>
-                        <td colspan="5">Tidak ada data aplikasi.</td>
+                        <td colspan="6">Tidak ada data aplikasi.</td>
                     </tr>
                 <?php else: ?>
                     <?php foreach ($daftarAplikasi as $app): ?>
                         <tr>
-                            <td><?php echo $app['nama_aplikasi']; ?></td>
-                            <td><?php echo $app['developer']; ?></td>
-                            <td><?php echo $app['tahun_rilis']; ?></td>
-                            <td><?php echo $app['ukuran_mb']; ?></td>
+                            <td><?php echo htmlspecialchars($app['kode_app']); ?></td>
+                            <td><?php echo htmlspecialchars($app['nama_app']); ?></td>
+                            <td><?php echo htmlspecialchars($app['kategori']); ?></td>
+                            <td>Rp <?php echo number_format($app['harga'], 0, ',', '.'); ?></td>
+                            <td><?php echo htmlspecialchars($app['deskripsi']); ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $app['id']; ?>" class="btn-edit">Edit</a>
                                 <form class="form-hapus" method="post" action="hapus.php">

@@ -1,39 +1,43 @@
-// ...
 function initValidasiForm() {
     const form = document.getElementById("form-tambah");
     if (!form) return;
+
     form.addEventListener("submit", function (e) {
         let valid = true;
 
-        // Ubah selector ke target input aplikasi/pelanggan
-        const fieldUtama = form.querySelector("[name='nama_aplikasi'], [name='nama']");
-        if (fieldUtama && fieldUtama.value.trim() === "") {
-            tampilkanError(fieldUtama, "Field ini wajib diisi.");
+        // Validasi untuk form Pelanggan
+        const namaPelanggan = form.querySelector("[name='nama']");
+        if (namaPelanggan && namaPelanggan.value.trim() === "") {
+            tampilkanError(namaPelanggan, "Nama pelanggan wajib diisi.");
             valid = false;
-        } else if (fieldUtama) { hapusError(fieldUtama); }
+        } else if (namaPelanggan) { hapusError(namaPelanggan); }
 
-        const dev = form.querySelector("[name='developer']");
-        if (dev && dev.value.trim() === "") {
-            tampilkanError(dev, "Developer wajib diisi.");
+        const noPelanggan = form.querySelector("[name='no_pelanggan']");
+        if (noPelanggan && noPelanggan.value.trim() === "") {
+            tampilkanError(noPelanggan, "No. Pelanggan wajib diisi.");
             valid = false;
-        } else if (dev) { hapusError(dev); }
+        } else if (noPelanggan) { hapusError(noPelanggan); }
 
-        const tahun = form.querySelector("[name='tahun_rilis']");
-        if (tahun) {
-            const nilai = parseInt(tahun.value, 10);
-            if (isNaN(nilai) || nilai < 1990 || nilai > 2026) {
-                tampilkanError(tahun, "Tahun harus 1990-2026.");
-                valid = false;
-            } else { hapusError(tahun); }
-        }
+        // Validasi untuk form Aplikasi
+        const kodeApp = form.querySelector("[name='kode_app']");
+        if (kodeApp && kodeApp.value.trim() === "") {
+            tampilkanError(kodeApp, "Kode App wajib diisi.");
+            valid = false;
+        } else if (kodeApp) { hapusError(kodeApp); }
 
-        const ukuran = form.querySelector("[name='ukuran_mb']");
-        if (ukuran) {
-            const nilai = parseInt(ukuran.value, 10);
+        const namaApp = form.querySelector("[name='nama_app']");
+        if (namaApp && namaApp.value.trim() === "") {
+            tampilkanError(namaApp, "Nama Aplikasi wajib diisi.");
+            valid = false;
+        } else if (namaApp) { hapusError(namaApp); }
+
+        const harga = form.querySelector("[name='harga']");
+        if (harga) {
+            const nilai = parseFloat(harga.value);
             if (isNaN(nilai) || nilai < 0) {
-                tampilkanError(ukuran, "Ukuran MB tidak boleh negatif.");
+                tampilkanError(harga, "Harga tidak boleh negatif.");
                 valid = false;
-            } else { hapusError(ukuran); }
+            } else { hapusError(harga); }
         }
 
         if (!valid) { e.preventDefault(); }
