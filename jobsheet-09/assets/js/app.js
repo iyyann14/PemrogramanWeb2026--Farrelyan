@@ -43,3 +43,20 @@ function initValidasiForm() {
         if (!valid) { e.preventDefault(); }
     });
 }
+
+function initEditConfirm() {
+    document.addEventListener("submit", function (e) {
+        const form = e.target;
+
+        if (!form.classList.contains("form-edit")) return;
+
+        const yakin = confirm("Apakah Anda Yakin Ingin Menyimpan Perubahan Data Ini?");
+
+        if (!yakin) {
+            e.preventDefault();
+        }
+    });
+}
+
+// Panggil fungsi agar aktif saat file JavaScript dimuat
+initEditConfirm();
