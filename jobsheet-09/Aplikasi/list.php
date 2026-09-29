@@ -11,10 +11,13 @@ $offset = ($page - 1) * $perPage;
 $keyword = trim($_GET['q'] ?? '');
 
 if ($keyword !== '') {
-    $hitung = $pdo->prepare("SELECT COUNT(*) FROM aplikasi WHERE nama_app ILIKE :kw");
+    // 1. Menambahkan OR kategori ILIKE :kw pada query COUNT
+    $hitung = $pdo->prepare("SELECT COUNT(*) FROM aplikasi WHERE nama_app ILIKE :kw OR kategori ILIKE :kw");
     $hitung->execute(['kw' => '%' . $keyword . '%']);
     $totalRows = $hitung->fetchColumn();
-    $stmt = $pdo->prepare("SELECT * FROM aplikasi WHERE nama_app ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
+
+    // 2. Menambahkan OR kategori ILIKE :kw pada query SELECT
+    $stmt = $pdo->prepare("SELECT * FROM aplikasi WHERE nama_app ILIKE :kw OR kategori ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
     $stmt->bindValue('kw', '%' . $keyword . '%');
 } else {
     $totalRows = $pdo->query("SELECT COUNT(*) FROM aplikasi")->fetchColumn();
@@ -35,8 +38,8 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
     <div class="search-box">
         <form method="get" action="list.php">
             <span>
-                <label for="search-input">Cari Nama Aplikasi</label><br>
-                <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Ketik nama aplikasi...">
+                <label for="search-input">Cari Nama atau Kategori Aplikasi</label><br>
+                <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Ketik nama atau kategori...">
             </span>
             <button type="submit">Cari</button>
         </form>
