@@ -29,6 +29,8 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
                 <li><a href="<?php echo $base; ?>aplikasi/tambah.php">Tambah Aplikasi</a></li>
                 <li><a href="<?php echo $base; ?>pelanggan/list.php">Data Pelanggan</a></li>
                 <li><a href="<?php echo $base; ?>pelanggan/tambah.php">Tambah Pelanggan</a></li>
+                <li><a href="<?php echo $base; ?>kategori/list.php">Data Kategori</a></li>
+                <li><a href="<?php echo $base; ?>kategori/tambah.php">Tambah Kategori</a></li>
             </ul>
         </nav>
     </header>

@@ -52,6 +52,8 @@ header nav ul {
     list-style: none;
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap; /* Tambahan agar menu turun ke baris baru jika layar sempit */
+    justify-content: center;
 }
 
 header nav a {
@@ -120,7 +122,7 @@ section p {
 /* ===== Kartu Statistik ===== */
 main section:nth-of-type(2) {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* Diubah dari 3 menjadi 4 */
     gap: 1.5rem;
 }
 

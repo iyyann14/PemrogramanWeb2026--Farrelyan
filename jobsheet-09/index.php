@@ -3,8 +3,10 @@ $page_title = "Beranda";
 include __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/koneksi.php';
 
+// Menghitung statistik untuk ditampilkan di dashboard
 $totalAplikasi = $pdo->query("SELECT COUNT(*) FROM aplikasi")->fetchColumn();
 $totalPelanggan = $pdo->query("SELECT COUNT(*) FROM pelanggan")->fetchColumn();
+$totalKategori = $pdo->query("SELECT COUNT(*) FROM kategori")->fetchColumn(); // Tambahan baru
 ?>
 
 <section>
@@ -21,6 +23,10 @@ $totalPelanggan = $pdo->query("SELECT COUNT(*) FROM pelanggan")->fetchColumn();
     <article>
         <h3>Total Pelanggan</h3>
         <p><?php echo $totalPelanggan; ?></p>
+    </article>
+    <article>
+        <h3>Total Kategori</h3>
+        <p><?php echo $totalKategori; ?></p>
     </article>
     <article>
         <h3>Transaksi Hari Ini</h3>

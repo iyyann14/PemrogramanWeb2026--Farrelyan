@@ -16,3 +16,9 @@ CREATE TABLE pelanggan (
     email VARCHAR(255),
     no_hp VARCHAR(30)
 );
+
+CREATE TABLE kategori (
+    id SERIAL PRIMARY KEY,
+    nama_kategori VARCHAR(100) NOT NULL UNIQUE,
+    keterangan TEXT
+);
