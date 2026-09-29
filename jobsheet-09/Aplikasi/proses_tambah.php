@@ -2,28 +2,18 @@
 session_start();
 require __DIR__ . '/../includes/koneksi.php';
 
-$judul = trim($_POST['judul'] ?? '');
-$pengarang = trim($_POST['pengarang'] ?? '');
-$tahun = $_POST['tahun'] ?? '';
-$isbn = trim($_POST['isbn'] ?? '');
-$stok = $_POST['stok'] ?? '';
+$nama_aplikasi = trim($_POST['nama_aplikasi'] ?? '');
+$developer = trim($_POST['developer'] ?? '');
+$tahun_rilis = $_POST['tahun_rilis'] ?? '';
+$versi = trim($_POST['versi'] ?? '');
+$ukuran_mb = $_POST['ukuran_mb'] ?? '';
 $kategori = trim($_POST['kategori'] ?? '');
 
-// Validasi server-side — wajib ada meski sudah divalidasi JS di Jobsheet 5,
-// karena validasi client bisa dilewati (nonaktifkan JS / kirim request manual).
 $errors = [];
-if ($judul === '') {
-    $errors[] = "Judul wajib diisi.";
-}
-if ($pengarang === '') {
-    $errors[] = "Pengarang wajib diisi.";
-}
-if (!is_numeric($tahun) || $tahun < 1900 || $tahun > 2026) {
-    $errors[] = "Tahun harus di antara 1900-2026.";
-}
-if (!is_numeric($stok) || $stok < 0) {
-    $errors[] = "Stok tidak boleh negatif.";
-}
+if ($nama_aplikasi === '') $errors[] = "Nama aplikasi wajib diisi.";
+if ($developer === '') $errors[] = "Developer wajib diisi.";
+if (!is_numeric($tahun_rilis) || $tahun_rilis < 1990 || $tahun_rilis > 2026) $errors[] = "Tahun harus di antara 1990-2026.";
+if (!is_numeric($ukuran_mb) || $ukuran_mb < 0) $errors[] = "Ukuran MB tidak boleh negatif.";
 
 if (!empty($errors)) {
     $_SESSION['flash'] = ['type' => 'error', 'pesan' => implode(' ', $errors)];
@@ -32,19 +22,18 @@ if (!empty($errors)) {
 }
 
 $stmt = $pdo->prepare(
-    "INSERT INTO buku (judul, pengarang, tahun, isbn, stok, kategori)
-     VALUES (:judul, :pengarang, :tahun, :isbn, :stok, :kategori)
-     RETURNING id"
+    "INSERT INTO aplikasi (nama_aplikasi, developer, tahun_rilis, versi, ukuran_mb, kategori) 
+     VALUES (:nama_aplikasi, :developer, :tahun_rilis, :versi, :ukuran_mb, :kategori) RETURNING id"
 );
 $stmt->execute([
-    'judul' => $judul,
-    'pengarang' => $pengarang,
-    'tahun' => (int) $tahun,
-    'isbn' => $isbn,
-    'stok' => (int) $stok,
+    'nama_aplikasi' => $nama_aplikasi,
+    'developer' => $developer,
+    'tahun_rilis' => (int) $tahun_rilis,
+    'versi' => $versi,
+    'ukuran_mb' => (int) $ukuran_mb,
     'kategori' => $kategori,
 ]);
 
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Buku berhasil ditambahkan.'];
+$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Aplikasi berhasil ditambahkan.'];
 header('Location: list.php');
 exit;

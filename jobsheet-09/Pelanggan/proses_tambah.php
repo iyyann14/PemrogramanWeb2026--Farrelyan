@@ -3,16 +3,16 @@ session_start();
 require __DIR__ . '/../includes/koneksi.php';
 
 $nama = trim($_POST['nama'] ?? '');
-$noAnggota = trim($_POST['no_anggota'] ?? '');
-$alamat = trim($_POST['alamat'] ?? '');
+$noPelanggan = trim($_POST['no_pelanggan'] ?? '');
+$email = trim($_POST['email'] ?? '');
 $noHp = trim($_POST['no_hp'] ?? '');
 
 $errors = [];
 if ($nama === '') {
     $errors[] = "Nama wajib diisi.";
 }
-if ($noAnggota === '') {
-    $errors[] = "No. Anggota wajib diisi.";
+if ($noPelanggan === '') {
+    $errors[] = "No. Pelanggan wajib diisi.";
 }
 
 if (!empty($errors)) {
@@ -22,17 +22,17 @@ if (!empty($errors)) {
 }
 
 $stmt = $pdo->prepare(
-    "INSERT INTO anggota (nama, no_anggota, alamat, no_hp)
-     VALUES (:nama, :no_anggota, :alamat, :no_hp)
+    "INSERT INTO pelanggan (nama, no_pelanggan, email, no_hp) 
+     VALUES (:nama, :no_pelanggan, :email, :no_hp) 
      RETURNING id"
 );
 $stmt->execute([
     'nama' => $nama,
-    'no_anggota' => $noAnggota,
-    'alamat' => $alamat,
+    'no_pelanggan' => $noPelanggan,
+    'email' => $email,
     'no_hp' => $noHp,
 ]);
 
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Anggota berhasil ditambahkan.'];
+$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Pelanggan berhasil ditambahkan.'];
 header('Location: list.php');
 exit;
