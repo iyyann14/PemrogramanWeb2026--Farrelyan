@@ -25,12 +25,12 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
         <nav>
             <ul>
                 <li><a href="<?php echo $base; ?>index.php">Beranda</a></li>
-                <li><a href="<?php echo $base; ?>aplikasi/list.php">Data Aplikasi</a></li>
-                <li><a href="<?php echo $base; ?>aplikasi/tambah.php">Tambah Aplikasi</a></li>
-                <li><a href="<?php echo $base; ?>pelanggan/list.php">Data Pelanggan</a></li>
-                <li><a href="<?php echo $base; ?>pelanggan/tambah.php">Tambah Pelanggan</a></li>
-                <li><a href="<?php echo $base; ?>kategori/list.php">Data Kategori</a></li>
-                <li><a href="<?php echo $base; ?>kategori/tambah.php">Tambah Kategori</a></li>
+                <li><a href="<?php echo $base; ?>Aplikasi/list.php">Data Aplikasi</a></li>
+                <li><a href="<?php echo $base; ?>Aplikasi/tambah.php">Tambah Aplikasi</a></li>
+                <li><a href="<?php echo $base; ?>Pelanggan/list.php">Data Pelanggan</a></li>
+                <li><a href="<?php echo $base; ?>Pelanggan/tambah.php">Tambah Pelanggan</a></li>
+                <li><a href="<?php echo $base; ?>Kategori/list.php">Data Kategori</a></li>
+                <li><a href="<?php echo $base; ?>Kategori/tambah.php">Tambah Kategori</a></li>
             </ul>
         </nav>
     </header>
