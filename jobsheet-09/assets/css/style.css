@@ -344,3 +344,50 @@ footer {
     font-size: 0.9rem;
     margin-top: 3rem;
 }
+
+/* ===== Responsif Mobile ===== */
+@media (max-width: 768px) {
+
+    /* Menyesuaikan ukuran teks dan jarak header */
+    .header-titles {
+        padding: 1.5rem 1rem;
+    }
+
+    .header-titles h1 {
+        font-size: 1.4rem;
+    }
+
+    /* Mengurangi margin dan padding utama agar tidak memakan ruang */
+    main {
+        margin: 1rem;
+        padding: 1.5rem 1rem;
+    }
+
+    /* Merapikan jarak menu navigasi */
+    header nav {
+        padding: 0.5rem;
+    }
+
+    header nav ul {
+        gap: 0.5rem;
+    }
+
+    header nav a {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    /* Mengubah kartu statistik menjadi 2 kolom */
+    main section:nth-of-type(2) {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Mengubah kartu statistik menjadi 1 kolom bersusun untuk HP layar sempit */
+    main section:nth-of-type(2) {
+        grid-template-columns: 1fr;
+    }
+}
