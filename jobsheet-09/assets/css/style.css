@@ -465,4 +465,27 @@ footer {
     .search-box input {
         width: 100%;
     }
+
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        flex-wrap: wrap;
+        /* Tambahkan ini agar nav bisa turun ke baris baru */
+    }
+
+    header nav {
+        display: none;
+        width: 100%;
+        background-color: #3b2553;
+        padding: 0;
+        margin-top: 1rem;
+        /* Tambahkan jarak antara tombol dan menu */
+        /* HAPUS position: absolute; top: 100%; left: 0; dan z-index: 999; */
+    }
+
+    header nav.show {
+        display: block;
+    }
 }
