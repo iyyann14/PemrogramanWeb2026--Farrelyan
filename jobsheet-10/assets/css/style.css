@@ -455,6 +455,17 @@ header {
 }
 
 @media (max-width: 768px) {
+    .mobile-only-logout {
+        display: block !important;
+    }
+
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        position: relative;
+    }
 
     .header-titles {
         padding: 0;
@@ -473,6 +484,14 @@ header {
         line-height: 1;
     }
 
+    /* Ubah posisi auth-status khusus untuk HP agar masuk ke dalam area menu */
+    .auth-status {
+        position: static;
+        /* Hilangkan posisi absolut di mobile */
+        display: none;
+        /* Sembunyikan dari header atas */
+    }
+
     header nav {
         position: absolute;
         top: 100%;
@@ -480,10 +499,13 @@ header {
         width: 100%;
         background-color: #3b2553;
         z-index: 999;
+        display: none;
+        /* Default tertutup sebelum tombol hamburger diklik */
     }
 
     header nav.show {
         display: block;
+        /* Muncul saat menu dibuka */
     }
 
     header nav ul {
@@ -497,43 +519,5 @@ header {
         padding: 0.8rem 1.5rem;
         border-radius: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .search-box form {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-        align-items: flex-end;
-    }
-
-    .search-box span {
-        flex: 1;
-    }
-
-    .search-box input {
-        width: 100%;
-    }
-
-    header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 1.5rem;
-        flex-wrap: wrap;
-        /* Tambahkan ini agar nav bisa turun ke baris baru */
-    }
-
-    header nav {
-        display: none;
-        width: 100%;
-        background-color: #3b2553;
-        padding: 0;
-        margin-top: 1rem;
-        /* Tambahkan jarak antara tombol dan menu */
-        /* HAPUS position: absolute; top: 100%; left: 0; dan z-index: 999; */
-    }
-
-    header nav.show {
-        display: block;
     }
 }
