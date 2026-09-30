@@ -419,14 +419,42 @@ footer {
     }
 }
 
+header {
+    background-color: #2b1b3d;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* Kunci utama agar absolut mengacu ke header */
+}
+
+.auth-status {
+    position: absolute;
+    top: 1.5rem;
+    right: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #ffffff !important;
+    /* Memaksa warna teks jadi putih */
+    font-size: 0.95rem;
+    z-index: 10;
+}
+
+.auth-status span {
+    color: #ffffff;
+}
+
+.auth-status a {
+    color: #ffffff !important;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.auth-status a:hover {
+    color: #e0c3fc !important;
+}
+
 @media (max-width: 768px) {
-    header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 1.5rem;
-        position: relative;
-    }
 
     .header-titles {
         padding: 0;
