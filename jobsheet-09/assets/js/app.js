@@ -58,5 +58,17 @@ function initEditConfirm() {
     });
 }
 
+// Script untuk Toggle Hamburger Menu
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById("nav-toggle-btn");
+    const navMenu = document.querySelector("header nav");
+
+    if (toggleBtn && navMenu) {
+        toggleBtn.addEventListener("click", function () {
+            navMenu.classList.toggle("show");
+        });
+    }
+});
+
 // Panggil fungsi agar aktif saat file JavaScript dimuat
 initEditConfirm();

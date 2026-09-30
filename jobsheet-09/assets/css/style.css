@@ -368,13 +368,20 @@ footer {
         padding: 0.5rem;
     }
 
-    header nav ul {
-        gap: 0.5rem;
+    @media (max-width: 768px) {
+
+        header nav ul {
+            justify-content: flex-start;
+            gap: 0.5rem;
+        }
     }
 
-    header nav a {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.85rem;
+    @media (max-width: 768px) {
+        header nav a {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.85rem;
+            text-align: left;
+        }
     }
 
     /* Mengubah kartu statistik menjadi 2 kolom */
@@ -389,5 +396,41 @@ footer {
     /* Mengubah kartu statistik menjadi 1 kolom bersusun untuk HP layar sempit */
     main section:nth-of-type(2) {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Munculkan tombol hamburger */
+    .nav-toggle-label {
+        display: block;
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Sembunyikan menu secara default */
+    header nav {
+        display: none;
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Class untuk memunculkan menu (dipicu lewat JS) */
+    header nav.show {
+        display: block;
+    }
+
+    /* Susun menu memanjang ke bawah rata kiri */
+    header nav ul {
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+    }
+
+    header nav a {
+        display: block;
+        padding: 0.8rem 1.5rem;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 }
