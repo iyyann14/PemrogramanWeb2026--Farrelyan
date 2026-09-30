@@ -1,12 +1,20 @@
 <?php
+// Wajibkan login sebelum mengakses halaman Beranda/Dashboard
+require __DIR__ . '/includes/auth.php';
+
 $page_title = "Beranda";
 include __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/koneksi.php';
 
-// Menghitung statistik untuk ditampilkan di dashboard
-$totalAplikasi = $pdo->query("SELECT COUNT(*) FROM aplikasi")->fetchColumn();
-$totalPelanggan = $pdo->query("SELECT COUNT(*) FROM pelanggan")->fetchColumn();
-$totalKategori = $pdo->query("SELECT COUNT(*) FROM kategori")->fetchColumn(); // Tambahan baru
+try {
+    $totalAplikasi = $pdo->query("SELECT COUNT(*) FROM aplikasi")->fetchColumn();
+    $totalPelanggan = $pdo->query("SELECT COUNT(*) FROM pelanggan")->fetchColumn();
+    $totalKategori = $pdo->query("SELECT COUNT(*) FROM kategori")->fetchColumn();
+} catch (PDOException $e) {
+    $totalAplikasi = 0;
+    $totalPelanggan = 0;
+    $totalKategori = 0;
+}
 ?>
 
 <section>

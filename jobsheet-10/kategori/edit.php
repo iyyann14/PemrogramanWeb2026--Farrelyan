@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../includes/auth.php';
 $page_title = "Edit Kategori";
 include __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/koneksi.php';
@@ -7,7 +8,6 @@ $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
 $id = $_GET['id'] ?? null;
-
 if (!$id) {
     header('Location: list.php');
     exit;
@@ -22,18 +22,14 @@ if (!$kategori) {
     exit;
 }
 ?>
-
 <section>
     <h2>Edit Kategori</h2>
-
     <?php if ($flash): ?>
         <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
     <?php endif; ?>
-
-    <!-- Class form-edit ditambahkan untuk memicu konfirmasi JS di Latihan 1 -->
+    <!-- Class form-edit ditambahkan untuk memicu konfirmasi JS -->
     <form id="form-tambah" class="form-edit" method="post" action="proses_edit.php">
         <input type="hidden" name="id" value="<?php echo $kategori['id']; ?>">
-
         <p>
             <label for="nama_kategori">Nama Kategori</label><br>
             <input type="text" id="nama_kategori" name="nama_kategori" value="<?php echo htmlspecialchars($kategori['nama_kategori']); ?>" required>
@@ -47,5 +43,4 @@ if (!$kategori) {
         </p>
     </form>
 </section>
-
 <?php include __DIR__ . '/../includes/footer.php'; ?>

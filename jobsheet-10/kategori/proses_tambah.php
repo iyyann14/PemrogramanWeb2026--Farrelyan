@@ -1,12 +1,11 @@
 <?php
-session_start();
+require __DIR__ . '/../includes/auth.php';
 require __DIR__ . '/../includes/koneksi.php';
 
 $namaKategori = trim($_POST['nama_kategori'] ?? '');
 $keterangan = trim($_POST['keterangan'] ?? '');
 
 $errors = [];
-
 if ($namaKategori === '') {
     $errors[] = "Nama kategori wajib diisi.";
 }

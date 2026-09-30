@@ -1,7 +1,6 @@
 <?php
-session_start();
+require __DIR__ . '/../includes/auth.php';
 require __DIR__ . '/../includes/koneksi.php';
-require __DIR__ . '/../includes/auth.php'; ?>
 
 $id = $_POST['id'] ?? null;
 $kodeApp = trim($_POST['kode_app'] ?? '');

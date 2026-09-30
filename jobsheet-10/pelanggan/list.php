@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../includes/auth.php';
 $page_title = "Daftar Pelanggan";
 include __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/koneksi.php';
@@ -15,21 +16,18 @@ if ($keyword !== '') {
     $hitung = $pdo->prepare("SELECT COUNT(*) FROM pelanggan WHERE nama ILIKE :kw");
     $hitung->execute(['kw' => '%' . $keyword . '%']);
     $totalRows = $hitung->fetchColumn();
-
     $stmt = $pdo->prepare("SELECT * FROM pelanggan WHERE nama ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
     $stmt->bindValue('kw', '%' . $keyword . '%');
 } else {
     $totalRows = $pdo->query("SELECT COUNT(*) FROM pelanggan")->fetchColumn();
     $stmt = $pdo->prepare("SELECT * FROM pelanggan ORDER BY id DESC LIMIT :limit OFFSET :offset");
 }
-
 $stmt->bindValue('limit', $perPage, PDO::PARAM_INT);
 $stmt->bindValue('offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $daftarPelanggan = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $totalPages = max(1, (int) ceil($totalRows / $perPage));
 ?>
-
 <section>
     <h2>Daftar Pelanggan</h2>
     <?php if ($flash): ?>
@@ -39,7 +37,7 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
         <form method="get" action="list.php">
             <span>
                 <label for="search-input">Cari Nama Pelanggan</label><br>
-                <input type="text" id="search-input" name="q" value="<?php echo $keyword; ?>" placeholder="Ketik nama pelanggan...">
+                <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Ketik nama pelanggan...">
             </span>
             <button type="submit">Cari</button>
         </form>
@@ -63,10 +61,10 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
                 <?php else: ?>
                     <?php foreach ($daftarPelanggan as $plg): ?>
                         <tr>
-                            <td><?php echo $plg['no_pelanggan']; ?></td>
-                            <td><?php echo $plg['nama']; ?></td>
-                            <td><?php echo $plg['email']; ?></td>
-                            <td><?php echo $plg['no_hp']; ?></td>
+                            <td><?php echo htmlspecialchars($plg['no_pelanggan']); ?></td>
+                            <td><?php echo htmlspecialchars($plg['nama']); ?></td>
+                            <td><?php echo htmlspecialchars($plg['email']); ?></td>
+                            <td><?php echo htmlspecialchars($plg['no_hp']); ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $plg['id']; ?>" class="btn-edit">Edit</a>
                                 <form class="form-hapus" method="post" action="hapus.php">
@@ -87,5 +85,4 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
         <?php endfor; ?>
     </nav>
 </section>
-
 <?php include __DIR__ . '/../includes/footer.php'; ?>

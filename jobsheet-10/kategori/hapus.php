@@ -1,15 +1,13 @@
 <?php
-session_start();
+require __DIR__ . '/../includes/auth.php';
 require __DIR__ . '/../includes/koneksi.php';
 
-// Memastikan hanya menerima request POST demi keamanan
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: list.php');
     exit;
 }
 
 $id = $_POST['id'] ?? null;
-
 if ($id) {
     try {
         $stmt = $pdo->prepare("DELETE FROM kategori WHERE id = :id");
@@ -19,6 +17,5 @@ if ($id) {
         $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menghapus kategori.'];
     }
 }
-
 header('Location: list.php');
 exit;

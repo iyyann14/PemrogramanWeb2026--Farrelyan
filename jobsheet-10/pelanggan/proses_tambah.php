@@ -1,5 +1,5 @@
 <?php
-session_start();
+require __DIR__ . '/../includes/auth.php';
 require __DIR__ . '/../includes/koneksi.php';
 
 $nama = trim($_POST['nama'] ?? '');
@@ -22,9 +22,9 @@ if (!empty($errors)) {
 }
 
 $stmt = $pdo->prepare(
-    "INSERT INTO pelanggan (nama, no_pelanggan, email, no_hp) 
-     VALUES (:nama, :no_pelanggan, :email, :no_hp) 
-     RETURNING id"
+    "INSERT INTO pelanggan (nama, no_pelanggan, email, no_hp)
+      VALUES (:nama, :no_pelanggan, :email, :no_hp)
+      RETURNING id"
 );
 $stmt->execute([
     'nama' => $nama,

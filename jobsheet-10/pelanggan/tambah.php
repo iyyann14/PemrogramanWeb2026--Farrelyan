@@ -1,11 +1,10 @@
 <?php
+require __DIR__ . '/../includes/auth.php';
 $page_title = "Tambah Pelanggan";
 include __DIR__ . '/../includes/header.php';
-
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 ?>
-
 <section>
     <h2>Tambah Pelanggan</h2>
     <?php if ($flash): ?>
@@ -33,5 +32,4 @@ unset($_SESSION['flash']);
         </p>
     </form>
 </section>
-
 <?php include __DIR__ . '/../includes/footer.php'; ?>
