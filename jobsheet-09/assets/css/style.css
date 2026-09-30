@@ -400,27 +400,44 @@ footer {
 }
 
 @media (max-width: 768px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        position: relative;
+    }
 
-    /* Munculkan tombol hamburger */
+    .header-titles {
+        padding: 0;
+        flex: 1;
+    }
+
+    .header-titles h1 {
+        font-size: 1.4rem;
+        margin-bottom: 0.2rem;
+    }
+
     .nav-toggle-label {
         display: block;
-        margin-left: 1.5rem;
-        margin-bottom: 1rem;
+        margin: 0;
+        font-size: 1.8rem;
+        line-height: 1;
     }
 
-    /* Sembunyikan menu secara default */
     header nav {
-        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
-        padding: 0;
+        background-color: #3b2553;
+        z-index: 999;
     }
 
-    /* Class untuk memunculkan menu (dipicu lewat JS) */
     header nav.show {
         display: block;
     }
 
-    /* Susun menu memanjang ke bawah rata kiri */
     header nav ul {
         flex-direction: column;
         justify-content: flex-start;
@@ -432,5 +449,20 @@ footer {
         padding: 0.8rem 1.5rem;
         border-radius: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .search-box form {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: flex-end;
+    }
+
+    .search-box span {
+        flex: 1;
+    }
+
+    .search-box input {
+        width: 100%;
     }
 }
