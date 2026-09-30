@@ -1,0 +1,491 @@
+/* ===== Reset & Base ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f4f0f7;
+    color: #333;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ===== Header & Navbar ===== */
+header {
+    background-color: #2b1b3d;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-titles {
+    text-align: left;
+    padding: 2rem 2.5rem;
+    color: #fff;
+}
+
+.header-titles h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.header-titles p {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #d8cce6;
+}
+
+header nav {
+    background-color: #3b2553;
+    display: flex;
+    justify-content: center;
+    padding: 0.8rem 1rem;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    /* Tambahan agar menu turun ke baris baru jika layar sempit */
+    justify-content: center;
+}
+
+header nav a {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+header nav a:hover,
+header nav a.active {
+    background-color: #9d4edd;
+    box-shadow: 0 2px 8px rgba(157, 78, 221, 0.4);
+}
+
+.nav-toggle-label {
+    display: none;
+    font-size: 1.6rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===== Main Layout ===== */
+main {
+    background-color: #fff;
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(43, 27, 61, 0.08);
+}
+
+section {
+    margin-bottom: 2.5rem;
+}
+
+section h2 {
+    color: #2b1b3d;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    position: relative;
+    border-bottom: none;
+}
+
+section h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 65px;
+    height: 5px;
+    background: linear-gradient(90deg, #9d4edd, #e0c3fc);
+    border-radius: 10px;
+}
+
+section p {
+    color: #4a4a4a;
+}
+
+/* ===== Kartu Statistik ===== */
+main section:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Diubah dari 3 menjadi 4 */
+    gap: 1.5rem;
+}
+
+main section:nth-of-type(2) h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 1.5rem;
+}
+
+main section:nth-of-type(2) article {
+    background-color: #faf8fc;
+    border: 1px solid #e4dced;
+    border-left: 5px solid #7b1fa2;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+    transition: transform 0.2s ease;
+}
+
+main section:nth-of-type(2) article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(123, 31, 162, 0.1);
+}
+
+main section:nth-of-type(2) article h3 {
+    font-size: 0.85rem;
+    color: #6a4a87;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+main section:nth-of-type(2) article p {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #3b2553;
+}
+
+/* ===== Form ===== */
+form p {
+    margin-bottom: 1rem;
+}
+
+form label {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+    color: #444;
+}
+
+form input,
+form select {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.65rem;
+    border: 1px solid #cdd4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+form button[type="submit"] {
+    background-color: #9d4edd;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #7b1fa2;
+}
+
+/* ===== Pencarian & Tabel ===== */
+.search-box {
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cdd4da;
+    border-radius: 4px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+td {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid #e2e6ea;
+}
+
+thead {
+    background-color: #2b1b3d;
+    color: #fff;
+}
+
+th {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f6fc;
+}
+
+tbody tr:hover {
+    background-color: #f1eaf7;
+}
+
+/* Tombol Aksi */
+td button {
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+td button:hover,
+td a.btn-edit:hover {
+    opacity: 0.85;
+}
+
+td form.form-hapus button.btn-hapus {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    background-color: #e63946;
+    color: #fff;
+}
+
+/* Aksi Edit/Hapus khusus Jobsheet 09 */
+td a.btn-edit {
+    display: inline-block;
+    background-color: #9d4edd;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    margin-right: 0.3rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+td form.form-hapus {
+    display: inline;
+}
+
+/* ===== Pagination (Fitur Jobsheet 09) ===== */
+.pagination {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.pagination a {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #cdd4da;
+    border-radius: 4px;
+    color: #2b1b3d;
+    font-weight: bold;
+}
+
+.pagination a.active {
+    background-color: #9d4edd;
+    color: #fff;
+    border-color: #9d4edd;
+}
+
+/* ===== Flash Message ===== */
+.flash {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.flash-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.error {
+    display: block;
+    color: #e63946;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+/* ===== Footer ===== */
+footer {
+    background-color: #2b1b3d;
+    text-align: center;
+    padding: 1.5rem;
+    color: #a996bd;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+}
+
+/* ===== Responsif Mobile ===== */
+@media (max-width: 768px) {
+
+    /* Menyesuaikan ukuran teks dan jarak header */
+    .header-titles {
+        padding: 1.5rem 1rem;
+    }
+
+    .header-titles h1 {
+        font-size: 1.4rem;
+    }
+
+    /* Mengurangi margin dan padding utama agar tidak memakan ruang */
+    main {
+        margin: 1rem;
+        padding: 1.5rem 1rem;
+    }
+
+    /* Merapikan jarak menu navigasi */
+    header nav {
+        padding: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+
+        header nav ul {
+            justify-content: flex-start;
+            gap: 0.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        header nav a {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+    }
+
+    /* Mengubah kartu statistik menjadi 2 kolom */
+    main section:nth-of-type(2) {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Mengubah kartu statistik menjadi 1 kolom bersusun untuk HP layar sempit */
+    main section:nth-of-type(2) {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        position: relative;
+    }
+
+    .header-titles {
+        padding: 0;
+        flex: 1;
+    }
+
+    .header-titles h1 {
+        font-size: 1.4rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .nav-toggle-label {
+        display: block;
+        margin: 0;
+        font-size: 1.8rem;
+        line-height: 1;
+    }
+
+    header nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #3b2553;
+        z-index: 999;
+    }
+
+    header nav.show {
+        display: block;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+    }
+
+    header nav a {
+        display: block;
+        padding: 0.8rem 1.5rem;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .search-box form {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: flex-end;
+    }
+
+    .search-box span {
+        flex: 1;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        flex-wrap: wrap;
+        /* Tambahkan ini agar nav bisa turun ke baris baru */
+    }
+
+    header nav {
+        display: none;
+        width: 100%;
+        background-color: #3b2553;
+        padding: 0;
+        margin-top: 1rem;
+        /* Tambahkan jarak antara tombol dan menu */
+        /* HAPUS position: absolute; top: 100%; left: 0; dan z-index: 999; */
+    }
+
+    header nav.show {
+        display: block;
+    }
+}
