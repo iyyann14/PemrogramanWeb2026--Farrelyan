@@ -1,12 +1,12 @@
 <?php
-$host = "ep-empty-mouse-b5g0jwql-pooler.c-7.us-east-2.aws.neon.tech"; // Diambil dari bagian @
+$host = "localhost";
 $port = "5432";
-$db   = "neondb";       // Nama database sesuai di neon.tech
-$user = "neondb_owner"; // Nama role/user 
-$pass = "npg_5ECGdAU3Xgzx"; // Sesuai dengan neodbowner
+$db   = "halo_premium"; 
+$user = "postgres";         // Username default postgres
+$pass = "12345678";     
 
 try {
-    $dsn = "pgsql:host=$host;port=$port;dbname=$db;sslmode=require";
+    $dsn = "pgsql:host=$host;port=$port;dbname=$db";
     $pdo = new PDO($dsn, $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
