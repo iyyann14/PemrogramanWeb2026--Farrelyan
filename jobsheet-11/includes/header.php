@@ -2,17 +2,13 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once __DIR__ . '/helpers.php';
-require_once __DIR__ . '/csrf.php';
-
-$sudahLogin = isset($_SESSION['user_id']);
 
 $__jobsheetRoot = dirname(__DIR__);
 $__scriptDir = dirname($_SERVER['SCRIPT_FILENAME']);
 $__rel = ltrim(str_replace('\\', '/', substr($__scriptDir, strlen($__jobsheetRoot))), '/');
 $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
 
-// Cek apakah sedang di halaman auth agar tombol menu disembunyikan
+$sudahLogin = isset($_SESSION['user_id']);
 $isAuthPage = strpos($_SERVER['SCRIPT_FILENAME'], '/auth/') !== false || strpos($_SERVER['SCRIPT_FILENAME'], '\auth\\') !== false;
 ?>
 <!DOCTYPE html>
@@ -21,15 +17,15 @@ $isAuthPage = strpos($_SERVER['SCRIPT_FILENAME'], '/auth/') !== false || strpos(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistem Perpustakaan Mini<?php echo isset($page_title) ? ' | ' . $page_title : ''; ?></title>
+    <title>Toko Aplikasi Premium<?php echo isset($page_title) ? ' | ' . $page_title : ''; ?></title>
     <link rel="stylesheet" href="<?php echo $base; ?>assets/css/style.css">
 </head>
 
 <body>
     <header>
         <div class="header-titles">
-            <h1>Sistem Perpustakaan Mini</h1>
-            <p>Aplikasi sederhana untuk mengelola data buku dan anggota</p>
+            <h1>Toko Aplikasi Premium</h1>
+            <p>Web Pengelola Data Aplikasi Premium Online</p>
         </div>
 
         <?php if (!$isAuthPage): ?>
@@ -37,22 +33,26 @@ $isAuthPage = strpos($_SERVER['SCRIPT_FILENAME'], '/auth/') !== false || strpos(
             <nav>
                 <ul>
                     <li><a href="<?php echo $base; ?>index.php">Beranda</a></li>
-                    <li><a href="<?php echo $base; ?>buku/list.php">Daftar Buku</a></li>
-                    <?php if ($sudahLogin): ?>
-                        <li><a href="<?php echo $base; ?>buku/tambah.php">Tambah Buku</a></li>
-                        <li><a href="<?php echo $base; ?>anggota/list.php">Daftar Anggota</a></li>
-                        <li><a href="<?php echo $base; ?>anggota/tambah.php">Tambah Anggota</a></li>
+                    <li><a href="<?php echo $base; ?>aplikasi/list.php">Data Aplikasi</a></li>
+                    <li><a href="<?php echo $base; ?>aplikasi/tambah.php">Tambah Aplikasi</a></li>
+                    <li><a href="<?php echo $base; ?>pelanggan/list.php">Data Pelanggan</a></li>
+                    <li><a href="<?php echo $base; ?>pelanggan/tambah.php">Tambah Pelanggan</a></li>
+                    <li><a href="<?php echo $base; ?>kategori/list.php">Data Kategori</a></li>
+                    <li><a href="<?php echo $base; ?>kategori/tambah.php">Tambah Kategori</a></li>
 
+                    <!-- Menu logout ini kita beri class "mobile-only-logout" agar HANYA MUNCUL DI HP -->
+                    <?php if ($sudahLogin): ?>
                         <li class="mobile-only-logout" style="border-top: 1px solid rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; color: #fff; background: #2b1b3d; display: none;">
-                            <span style="display: block; font-size: 0.85rem; color: #d8cce6;">Login sebagai: <strong><?php echo e($_SESSION['nama'] ?? ''); ?></strong></span>
+                            <span style="display: block; font-size: 0.85rem; color: #d8cce6;">Login sebagai: <strong><?php echo htmlspecialchars($_SESSION['nama'] ?? ''); ?></strong></span>
                             <a href="<?php echo $base; ?>auth/logout.php" style="color: #ff6b6b; font-weight: bold; padding: 0; margin-top: 5px; display: inline-block;">Keluar (Logout)</a>
                         </li>
                     <?php endif; ?>
                 </ul>
             </nav>
+
             <div class="auth-status">
                 <?php if ($sudahLogin): ?>
-                    <span>Halo, <?php echo e($_SESSION['nama'] ?? 'User'); ?></span>
+                    <span>Halo, <?php echo htmlspecialchars($_SESSION['nama'] ?? 'User'); ?></span>
                     <a href="<?php echo $base; ?>auth/logout.php">Logout</a>
                 <?php else: ?>
                     <a href="<?php echo $base; ?>auth/login.php">Login</a>
