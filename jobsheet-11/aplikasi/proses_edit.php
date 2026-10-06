@@ -1,6 +1,10 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
+require __DIR__ . '/../includes/csrf.php'; // Proteksi CSRF
 require __DIR__ . '/../includes/koneksi.php';
+
+// Memverifikasi kecocokan token dari form sebelum memproses data
+csrf_verify();
 
 $id = $_POST['id'] ?? null;
 $kodeApp = trim($_POST['kode_app'] ?? '');
@@ -37,6 +41,7 @@ try {
         'deskripsi' => $deskripsi,
         'id'        => $id
     ]);
+
     $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Aplikasi berhasil diperbarui.'];
     header('Location: list.php');
     exit;

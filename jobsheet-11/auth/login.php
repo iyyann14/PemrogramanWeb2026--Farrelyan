@@ -2,12 +2,18 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// Memuat fungsi keamanan CSRF secara eksplisit agar dikenali oleh halaman
+require_once __DIR__ . '/../includes/csrf.php';
+
 if (isset($_SESSION['user_id'])) {
     header('Location: ../index.php');
     exit;
 }
+
 $page_title = "Login";
 include __DIR__ . '/../includes/header.php';
+
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 ?>
@@ -16,7 +22,11 @@ unset($_SESSION['flash']);
     <?php if ($flash): ?>
         <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
     <?php endif; ?>
+
     <form method="post" action="proses_login.php">
+        <!-- Token CSRF Wajib Ada di Sini -->
+        <?php echo csrf_field(); ?>
+
         <p>
             <label for="username">Username</label><br>
             <input type="text" id="username" name="username" required>
@@ -33,6 +43,7 @@ unset($_SESSION['flash']);
             <button type="submit">Masuk</button>
         </p>
     </form>
+
     <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
 </section>
 <?php include __DIR__ . '/../includes/footer.php'; ?>

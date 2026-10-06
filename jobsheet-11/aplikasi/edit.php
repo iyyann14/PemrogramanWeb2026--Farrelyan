@@ -28,14 +28,17 @@ if (!$aplikasi) {
         <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
     <?php endif; ?>
     <form id="form-tambah" class="form-edit" method="post" action="proses_edit.php">
-        <input type="hidden" name="id" value="<?php echo $aplikasi['id']; ?>">
+        <!-- WAJIB ADA: Token CSRF -->
+        <?php echo csrf_field(); ?>
+
+        <input type="hidden" name="id" value="<?php echo (int) $aplikasi['id']; ?>">
         <p>
             <label for="kode_app">Kode App</label><br>
-            <input type="text" id="kode_app" name="kode_app" value="<?php echo htmlspecialchars($aplikasi['kode_app']); ?>" required>
+            <input type="text" id="kode_app" name="kode_app" value="<?php echo e($aplikasi['kode_app']); ?>" required>
         </p>
         <p>
             <label for="nama_app">Nama Aplikasi</label><br>
-            <input type="text" id="nama_app" name="nama_app" value="<?php echo htmlspecialchars($aplikasi['nama_app']); ?>" required>
+            <input type="text" id="nama_app" name="nama_app" value="<?php echo e($aplikasi['nama_app']); ?>" required>
         </p>
         <p>
             <label for="kategori">Kategori</label><br>
@@ -44,17 +47,17 @@ if (!$aplikasi) {
                 $opsi_kategori = ['7 Hari', '1 Bulan', '6 Bulan', '1 Tahun', 'Seumur Hidup'];
                 foreach ($opsi_kategori as $opsi):
                 ?>
-                    <option value="<?php echo $opsi; ?>" <?php echo $aplikasi['kategori'] === $opsi ? 'selected' : ''; ?>><?php echo $opsi; ?></option>
+                    <option value="<?php echo e($opsi); ?>" <?php echo $aplikasi['kategori'] === $opsi ? 'selected' : ''; ?>><?php echo e($opsi); ?></option>
                 <?php endforeach; ?>
             </select>
         </p>
         <p>
             <label for="harga">Harga (Rp)</label><br>
-            <input type="number" id="harga" name="harga" min="0" value="<?php echo htmlspecialchars($aplikasi['harga']); ?>" required>
+            <input type="number" id="harga" name="harga" min="0" value="<?php echo e($aplikasi['harga']); ?>" required>
         </p>
         <p>
             <label for="deskripsi">Deskripsi Singkat</label><br>
-            <input type="text" id="deskripsi" name="deskripsi" value="<?php echo htmlspecialchars($aplikasi['deskripsi']); ?>">
+            <input type="text" id="deskripsi" name="deskripsi" value="<?php echo e($aplikasi['deskripsi']); ?>">
         </p>
         <p>
             <button type="submit">Update</button>
