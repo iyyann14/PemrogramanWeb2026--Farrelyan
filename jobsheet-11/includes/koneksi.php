@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $port = "5432";
-$db   = "nyobasalah";
+$db   = "jobsheet_11";
 $user = "postgres";
 $pass = "12345678";
 
