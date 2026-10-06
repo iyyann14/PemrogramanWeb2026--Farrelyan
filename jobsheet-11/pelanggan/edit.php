@@ -28,22 +28,23 @@ if (!$pelanggan) {
         <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
     <?php endif; ?>
     <form id="form-tambah" class="form-edit" method="post" action="proses_edit.php">
-        <input type="hidden" name="id" value="<?php echo $pelanggan['id']; ?>">
+        <?php echo csrf_field(); ?>
+        <input type="hidden" name="id" value="<?php echo (int) $pelanggan['id']; ?>">
         <p>
             <label for="nama">Nama Pelanggan</label><br>
-            <input type="text" id="nama" name="nama" value="<?php echo htmlspecialchars($pelanggan['nama']); ?>" required>
+            <input type="text" id="nama" name="nama" value="<?php echo e($pelanggan['nama']); ?>" required>
         </p>
         <p>
             <label for="no_pelanggan">No. Pelanggan</label><br>
-            <input type="text" id="no_pelanggan" name="no_pelanggan" value="<?php echo htmlspecialchars($pelanggan['no_pelanggan']); ?>" required>
+            <input type="text" id="no_pelanggan" name="no_pelanggan" value="<?php echo e($pelanggan['no_pelanggan']); ?>" required>
         </p>
         <p>
             <label for="email">Email</label><br>
-            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($pelanggan['email']); ?>">
+            <input type="email" id="email" name="email" value="<?php echo e($pelanggan['email']); ?>">
         </p>
         <p>
             <label for="no_hp">No. HP</label><br>
-            <input type="text" id="no_hp" name="no_hp" value="<?php echo htmlspecialchars($pelanggan['no_hp']); ?>">
+            <input type="text" id="no_hp" name="no_hp" value="<?php echo e($pelanggan['no_hp']); ?>">
         </p>
         <p>
             <button type="submit">Update</button>

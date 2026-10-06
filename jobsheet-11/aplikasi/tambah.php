@@ -11,6 +11,7 @@ unset($_SESSION['flash']);
         <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
     <?php endif; ?>
     <form id="form-tambah" method="post" action="proses_tambah.php">
+        <?php echo csrf_field(); ?>
         <p>
             <label for="kode_app">Kode App</label><br>
             <input type="text" id="kode_app" name="kode_app" placeholder="Contoh: APP001" required>

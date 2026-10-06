@@ -10,18 +10,20 @@ unset($_SESSION['flash']);
 $perPage = 5;
 $page = max(1, (int) ($_GET['page'] ?? 1));
 $offset = ($page - 1) * $perPage;
-$keyword = trim($_GET['q'] ?? '');
 
+$keyword = trim($_GET['q'] ?? '');
 if ($keyword !== '') {
     $hitung = $pdo->prepare("SELECT COUNT(*) FROM kategori WHERE nama_kategori ILIKE :kw");
     $hitung->execute(['kw' => '%' . $keyword . '%']);
     $totalRows = $hitung->fetchColumn();
+
     $stmt = $pdo->prepare("SELECT * FROM kategori WHERE nama_kategori ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
     $stmt->bindValue('kw', '%' . $keyword . '%');
 } else {
     $totalRows = $pdo->query("SELECT COUNT(*) FROM kategori")->fetchColumn();
     $stmt = $pdo->prepare("SELECT * FROM kategori ORDER BY id DESC LIMIT :limit OFFSET :offset");
 }
+
 $stmt->bindValue('limit', $perPage, PDO::PARAM_INT);
 $stmt->bindValue('offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
@@ -37,7 +39,7 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
         <form method="get" action="list.php">
             <span>
                 <label for="search-input">Cari Nama Kategori</label><br>
-                <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Ketik nama kategori...">
+                <input type="text" id="search-input" name="q" value="<?php echo e($keyword); ?>" placeholder="Ketik nama kategori...">
             </span>
             <button type="submit">Cari</button>
         </form>
@@ -61,11 +63,12 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
                     <?php foreach ($daftarKategori as $kat): ?>
                         <tr>
                             <td><?php echo $kat['id']; ?></td>
-                            <td><?php echo htmlspecialchars($kat['nama_kategori']); ?></td>
-                            <td><?php echo htmlspecialchars($kat['keterangan']); ?></td>
+                            <td><?php echo e($kat['nama_kategori']); ?></td>
+                            <td><?php echo e($kat['keterangan']); ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $kat['id']; ?>" class="btn-edit">Edit</a>
                                 <form class="form-hapus" method="post" action="hapus.php">
+                                    <?php echo csrf_field(); ?>
                                     <input type="hidden" name="id" value="<?php echo $kat['id']; ?>">
                                     <button type="submit" class="btn-hapus">Hapus</button>
                                 </form>

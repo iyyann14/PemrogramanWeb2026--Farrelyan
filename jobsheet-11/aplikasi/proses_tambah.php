@@ -1,6 +1,10 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
+require __DIR__ . '/../includes/csrf.php';
 require __DIR__ . '/../includes/koneksi.php';
+
+// Verifikasi Token CSRF
+csrf_verify();
 
 $kodeApp = trim($_POST['kode_app'] ?? '');
 $namaApp = trim($_POST['nama_app'] ?? '');
@@ -21,8 +25,8 @@ if (!empty($errors)) {
 
 try {
     $stmt = $pdo->prepare(
-        "INSERT INTO aplikasi (kode_app, nama_app, kategori, harga, deskripsi)
-         VALUES (:kode_app, :nama_app, :kategori, :harga, :deskripsi)
+        "INSERT INTO aplikasi (kode_app, nama_app, kategori, harga, deskripsi) 
+         VALUES (:kode_app, :nama_app, :kategori, :harga, :deskripsi) 
          RETURNING id"
     );
     $stmt->execute([

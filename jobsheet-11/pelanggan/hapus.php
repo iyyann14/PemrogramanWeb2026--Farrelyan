@@ -1,6 +1,9 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
+require __DIR__ . '/../includes/csrf.php';
 require __DIR__ . '/../includes/koneksi.php';
+
+csrf_verify();
 
 // Validasi Kontrol Akses: Hanya Admin yang boleh menghapus data
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
@@ -18,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $id = $_POST['id'] ?? null;
-
 if ($id) {
     try {
         $stmt = $pdo->prepare("DELETE FROM pelanggan WHERE id = :id");
@@ -28,6 +30,5 @@ if ($id) {
         $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menghapus pelanggan.'];
     }
 }
-
 header('Location: list.php');
 exit;

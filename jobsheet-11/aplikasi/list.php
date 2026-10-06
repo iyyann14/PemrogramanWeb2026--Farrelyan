@@ -2,21 +2,20 @@
 $page_title = "Daftar Aplikasi";
 include __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/koneksi.php';
+
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
 $perPage = 10;
 $page = max(1, (int) ($_GET['page'] ?? 1));
 $offset = ($page - 1) * $perPage;
-$keyword = trim($_GET['q'] ?? '');
 
+$keyword = trim($_GET['q'] ?? '');
 if ($keyword !== '') {
-    // 1. Menambahkan OR kategori ILIKE :kw pada query COUNT
     $hitung = $pdo->prepare("SELECT COUNT(*) FROM aplikasi WHERE nama_app ILIKE :kw OR kategori ILIKE :kw");
     $hitung->execute(['kw' => '%' . $keyword . '%']);
     $totalRows = $hitung->fetchColumn();
 
-    // 2. Menambahkan OR kategori ILIKE :kw pada query SELECT
     $stmt = $pdo->prepare("SELECT * FROM aplikasi WHERE nama_app ILIKE :kw OR kategori ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
     $stmt->bindValue('kw', '%' . $keyword . '%');
 } else {
@@ -39,7 +38,8 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
         <form method="get" action="list.php">
             <span>
                 <label for="search-input">Cari Nama atau Kategori Aplikasi</label><br>
-                <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Ketik nama atau kategori...">
+                <!-- Nilai pencarian diamankan dengan e() -->
+                <input type="text" id="search-input" name="q" value="<?php echo e($keyword); ?>" placeholder="Ketik nama atau kategori...">
             </span>
             <button type="submit">Cari</button>
         </form>
@@ -64,14 +64,16 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
                 <?php else: ?>
                     <?php foreach ($daftarAplikasi as $app): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($app['kode_app']); ?></td>
-                            <td><?php echo htmlspecialchars($app['nama_app']); ?></td>
-                            <td><?php echo htmlspecialchars($app['kategori']); ?></td>
+                            <!-- Seluruh output dibungkus fungsi e() -->
+                            <td><?php echo e($app['kode_app']); ?></td>
+                            <td><?php echo e($app['nama_app']); ?></td>
+                            <td><?php echo e($app['kategori']); ?></td>
                             <td>Rp <?php echo number_format($app['harga'], 0, ',', '.'); ?></td>
-                            <td><?php echo htmlspecialchars($app['deskripsi']); ?></td>
+                            <td><?php echo e($app['deskripsi']); ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $app['id']; ?>" class="btn-edit">Edit</a>
                                 <form class="form-hapus" method="post" action="hapus.php">
+                                    <?php echo csrf_field(); ?>
                                     <input type="hidden" name="id" value="<?php echo $app['id']; ?>">
                                     <button type="submit" class="btn-hapus">Hapus</button>
                                 </form>

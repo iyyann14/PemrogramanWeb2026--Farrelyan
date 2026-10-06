@@ -1,6 +1,9 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
+require __DIR__ . '/../includes/csrf.php';
 require __DIR__ . '/../includes/koneksi.php';
+
+csrf_verify();
 
 $nama = trim($_POST['nama'] ?? '');
 $noPelanggan = trim($_POST['no_pelanggan'] ?? '');
@@ -22,9 +25,9 @@ if (!empty($errors)) {
 }
 
 $stmt = $pdo->prepare(
-    "INSERT INTO pelanggan (nama, no_pelanggan, email, no_hp)
-      VALUES (:nama, :no_pelanggan, :email, :no_hp)
-      RETURNING id"
+    "INSERT INTO pelanggan (nama, no_pelanggan, email, no_hp) 
+     VALUES (:nama, :no_pelanggan, :email, :no_hp) 
+     RETURNING id"
 );
 $stmt->execute([
     'nama' => $nama,

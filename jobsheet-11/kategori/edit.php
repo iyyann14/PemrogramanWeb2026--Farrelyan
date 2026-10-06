@@ -29,14 +29,15 @@ if (!$kategori) {
     <?php endif; ?>
     <!-- Class form-edit ditambahkan untuk memicu konfirmasi JS -->
     <form id="form-tambah" class="form-edit" method="post" action="proses_edit.php">
-        <input type="hidden" name="id" value="<?php echo $kategori['id']; ?>">
+        <?php echo csrf_field(); ?>
+        <input type="hidden" name="id" value="<?php echo (int) $kategori['id']; ?>">
         <p>
             <label for="nama_kategori">Nama Kategori</label><br>
-            <input type="text" id="nama_kategori" name="nama_kategori" value="<?php echo htmlspecialchars($kategori['nama_kategori']); ?>" required>
+            <input type="text" id="nama_kategori" name="nama_kategori" value="<?php echo e($kategori['nama_kategori']); ?>" required>
         </p>
         <p>
             <label for="keterangan">Keterangan (Opsional)</label><br>
-            <input type="text" id="keterangan" name="keterangan" value="<?php echo htmlspecialchars($kategori['keterangan']); ?>">
+            <input type="text" id="keterangan" name="keterangan" value="<?php echo e($kategori['keterangan']); ?>">
         </p>
         <p>
             <button type="submit">Update Kategori</button>

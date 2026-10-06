@@ -2,7 +2,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require __DIR__ . '/../includes/csrf.php';
 require __DIR__ . '/../includes/koneksi.php';
+
+// Verifikasi token CSRF dari form login
+csrf_verify();
 
 $username = trim($_POST['username'] ?? '');
 $password = $_POST['password'] ?? '';
@@ -10,12 +14,10 @@ $password = $_POST['password'] ?? '';
 // Batas maksimal percobaan gagal
 $maxAttempts = 3;
 
-// Inisialisasi array pelacak percobaan gagal di session jika belum ada
 if (!isset($_SESSION['login_attempts'])) {
     $_SESSION['login_attempts'] = [];
 }
 
-// Cek apakah username ini sedang terkunci karena terlalu banyak gagal
 $currentAttempts = $_SESSION['login_attempts'][$username] ?? 0;
 if ($currentAttempts >= $maxAttempts) {
     $_SESSION['flash'] = [
@@ -31,21 +33,20 @@ $stmt->execute(['username' => $username]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user && password_verify($password, $user['password'])) {
-    // Jika login berhasil, reset counter percobaan gagal untuk username tersebut
-    unset($_SESSION['login_attempts'][$username]);
+    // Regenerasi session ID setelah login berhasil untuk mencegah Session Fixation
+    session_regenerate_id(true);
 
+    unset($_SESSION['login_attempts'][$username]);
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['nama'] = $user['nama'];
     $_SESSION['role'] = $user['role'];
     header('Location: ../index.php');
     exit;
 } else {
-    // Jika login gagal, tambahkan jumlah percobaan gagal
     if (!isset($_SESSION['login_attempts'][$username])) {
         $_SESSION['login_attempts'][$username] = 0;
     }
     $_SESSION['login_attempts'][$username]++;
-
     $sisaKesempatan = $maxAttempts - $_SESSION['login_attempts'][$username];
 
     if ($sisaKesempatan > 0) {

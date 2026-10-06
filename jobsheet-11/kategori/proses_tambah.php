@@ -1,6 +1,9 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
+require __DIR__ . '/../includes/csrf.php';
 require __DIR__ . '/../includes/koneksi.php';
+
+csrf_verify();
 
 $namaKategori = trim($_POST['nama_kategori'] ?? '');
 $keterangan = trim($_POST['keterangan'] ?? '');
