@@ -3,11 +3,15 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// WAJIB ADA: Memuat fungsi keamanan untuk digunakan di seluruh halaman
+require_once __DIR__ . '/helpers.php';
+require_once __DIR__ . '/csrf.php';
+
 $__jobsheetRoot = dirname(__DIR__);
 $__scriptDir = dirname($_SERVER['SCRIPT_FILENAME']);
 $__rel = ltrim(str_replace('\\', '/', substr($__scriptDir, strlen($__jobsheetRoot))), '/');
-$base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
 
+$base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
 $sudahLogin = isset($_SESSION['user_id']);
 $isAuthPage = strpos($_SERVER['SCRIPT_FILENAME'], '/auth/') !== false || strpos($_SERVER['SCRIPT_FILENAME'], '\auth\\') !== false;
 ?>
@@ -39,20 +43,19 @@ $isAuthPage = strpos($_SERVER['SCRIPT_FILENAME'], '/auth/') !== false || strpos(
                     <li><a href="<?php echo $base; ?>pelanggan/tambah.php">Tambah Pelanggan</a></li>
                     <li><a href="<?php echo $base; ?>kategori/list.php">Data Kategori</a></li>
                     <li><a href="<?php echo $base; ?>kategori/tambah.php">Tambah Kategori</a></li>
-
-                    <!-- Menu logout ini kita beri class "mobile-only-logout" agar HANYA MUNCUL DI HP -->
+                    <!-- Menu logout khusus mobile -->
                     <?php if ($sudahLogin): ?>
                         <li class="mobile-only-logout" style="border-top: 1px solid rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; color: #fff; background: #2b1b3d; display: none;">
-                            <span style="display: block; font-size: 0.85rem; color: #d8cce6;">Login sebagai: <strong><?php echo htmlspecialchars($_SESSION['nama'] ?? ''); ?></strong></span>
+                            <span style="display: block; font-size: 0.85rem; color: #d8cce6;">Login sebagai: <strong><?php echo e($_SESSION['nama'] ?? ''); ?></strong></span>
                             <a href="<?php echo $base; ?>auth/logout.php" style="color: #ff6b6b; font-weight: bold; padding: 0; margin-top: 5px; display: inline-block;">Keluar (Logout)</a>
                         </li>
                     <?php endif; ?>
                 </ul>
             </nav>
-
             <div class="auth-status">
                 <?php if ($sudahLogin): ?>
-                    <span>Halo, <?php echo htmlspecialchars($_SESSION['nama'] ?? 'User'); ?></span>
+                    <!-- Nama user juga dibungkus e() untuk keamanan tambahan -->
+                    <span>Halo, <?php echo e($_SESSION['nama'] ?? 'User'); ?></span>
                     <a href="<?php echo $base; ?>auth/logout.php">Logout</a>
                 <?php else: ?>
                     <a href="<?php echo $base; ?>auth/login.php">Login</a>
