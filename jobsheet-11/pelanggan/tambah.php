@@ -2,14 +2,13 @@
 require __DIR__ . '/../includes/auth.php';
 $page_title = "Tambah Pelanggan";
 include __DIR__ . '/../includes/header.php';
-
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 ?>
 <section>
     <h2>Tambah Pelanggan</h2>
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
     <form id="form-tambah" method="post" action="proses_tambah.php">
         <?php echo csrf_field(); ?>

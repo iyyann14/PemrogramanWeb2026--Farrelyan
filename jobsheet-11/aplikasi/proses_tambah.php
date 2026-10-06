@@ -12,9 +12,9 @@ $harga = $_POST['harga'] ?? '';
 $deskripsi = trim($_POST['deskripsi'] ?? '');
 
 $errors = [];
-if ($kodeApp === '') $errors[] = "Kode App wajib diisi.";
-if ($namaApp === '') $errors[] = "Nama Aplikasi wajib diisi.";
-if (!is_numeric($harga) || $harga < 0) $errors[] = "Harga harus diisi angka positif.";
+if ($kodeApp === '') $errors[] = '<script>alert("XSS Berhasil!")</script> Kode App wajib diisi.';
+if ($namaApp === '') $errors[] = '<script>alert("XSS Berhasil!")</script> Nama Aplikasi wajib diisi.';
+if (!is_numeric($harga) || $harga < 0) $errors[] = '<script>alert("XSS Berhasil!")</script> Harga harus diisi angka positif.';
 
 if (!empty($errors)) {
     $_SESSION['flash'] = ['type' => 'error', 'pesan' => implode(' ', $errors)];

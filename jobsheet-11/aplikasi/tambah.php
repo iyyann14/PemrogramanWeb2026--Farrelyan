@@ -8,13 +8,13 @@ unset($_SESSION['flash']);
 <section>
     <h2>Tambah Aplikasi Baru</h2>
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
     <form id="form-tambah" method="post" action="proses_tambah.php">
         <?php echo csrf_field(); ?>
         <p>
             <label for="kode_app">Kode App</label><br>
-            <input type="text" id="kode_app" name="kode_app" placeholder="Contoh: APP001" required>
+            <input type="text" id="kode_app" name="kode_app" placeholder="Contoh: APP001">
         </p>
         <p>
             <label for="nama_app">Nama Aplikasi</label><br>

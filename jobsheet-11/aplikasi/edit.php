@@ -25,12 +25,10 @@ if (!$aplikasi) {
 <section>
     <h2>Edit Aplikasi</h2>
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
     <form id="form-tambah" class="form-edit" method="post" action="proses_edit.php">
-        <!-- WAJIB ADA: Token CSRF -->
         <?php echo csrf_field(); ?>
-
         <input type="hidden" name="id" value="<?php echo (int) $aplikasi['id']; ?>">
         <p>
             <label for="kode_app">Kode App</label><br>

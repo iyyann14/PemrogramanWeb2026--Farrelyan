@@ -25,9 +25,8 @@ if (!$kategori) {
 <section>
     <h2>Edit Kategori</h2>
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
-    <!-- Class form-edit ditambahkan untuk memicu konfirmasi JS -->
     <form id="form-tambah" class="form-edit" method="post" action="proses_edit.php">
         <?php echo csrf_field(); ?>
         <input type="hidden" name="id" value="<?php echo (int) $kategori['id']; ?>">

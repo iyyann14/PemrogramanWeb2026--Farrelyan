@@ -25,7 +25,7 @@ if (!$pelanggan) {
 <section>
     <h2>Edit Pelanggan</h2>
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['pesan']; ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
     <form id="form-tambah" class="form-edit" method="post" action="proses_edit.php">
         <?php echo csrf_field(); ?>
