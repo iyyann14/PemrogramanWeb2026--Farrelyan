@@ -24,18 +24,29 @@ if (!empty($errors)) {
     exit;
 }
 
-$stmt = $pdo->prepare(
-    "INSERT INTO pelanggan (nama, no_pelanggan, email, no_hp) 
-     VALUES (:nama, :no_pelanggan, :email, :no_hp) 
-     RETURNING id"
-);
-$stmt->execute([
-    'nama' => $nama,
-    'no_pelanggan' => $noPelanggan,
-    'email' => $email,
-    'no_hp' => $noHp,
-]);
+try {
+    $stmt = $pdo->prepare(
+        "INSERT INTO pelanggan (nama, no_pelanggan, email, no_hp) 
+         VALUES (:nama, :no_pelanggan, :email, :no_hp) 
+         RETURNING id"
+    );
+    $stmt->execute([
+        'nama' => $nama,
+        'no_pelanggan' => $noPelanggan,
+        'email' => $email,
+        'no_hp' => $noHp,
+    ]);
 
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Pelanggan berhasil ditambahkan.'];
-header('Location: list.php');
-exit;
+    $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Pelanggan berhasil ditambahkan.'];
+    header('Location: list.php');
+    exit;
+} catch (PDOException $e) {
+    if ($e->getCode() == '23505') {
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'No. Pelanggan sudah digunakan.'];
+    } else {
+        error_log($e->getMessage());
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Maaf, terjadi kesalahan sistem saat menyimpan data.'];
+    }
+    header('Location: tambah.php');
+    exit;
+}

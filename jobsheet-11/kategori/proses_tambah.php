@@ -34,7 +34,8 @@ try {
     if ($e->getCode() == '23505') {
         $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Nama Kategori sudah ada. Silakan gunakan nama lain.'];
     } else {
-        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menyimpan: ' . $e->getMessage()];
+        error_log($e->getMessage());
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Maaf, terjadi kesalahan sistem saat menyimpan data.'];
     }
     header('Location: tambah.php');
     exit;

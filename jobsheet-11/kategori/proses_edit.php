@@ -41,7 +41,8 @@ try {
     if ($e->getCode() == '23505') {
         $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Nama Kategori sudah digunakan.'];
     } else {
-        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal mengupdate: ' . $e->getMessage()];
+        error_log($e->getMessage());
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Maaf, terjadi kesalahan sistem saat mengupdate data.'];
     }
     header('Location: edit.php?id=' . urlencode($id));
     exit;

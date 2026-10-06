@@ -30,17 +30,28 @@ if (!empty($errors)) {
     exit;
 }
 
-$stmt = $pdo->prepare(
-    "UPDATE pelanggan SET nama = :nama, no_pelanggan = :no_pelanggan, email = :email, no_hp = :no_hp WHERE id = :id"
-);
-$stmt->execute([
-    'nama' => $nama,
-    'no_pelanggan' => $noPelanggan,
-    'email' => $email,
-    'no_hp' => $noHp,
-    'id' => $id,
-]);
+try {
+    $stmt = $pdo->prepare(
+        "UPDATE pelanggan SET nama = :nama, no_pelanggan = :no_pelanggan, email = :email, no_hp = :no_hp WHERE id = :id"
+    );
+    $stmt->execute([
+        'nama' => $nama,
+        'no_pelanggan' => $noPelanggan,
+        'email' => $email,
+        'no_hp' => $noHp,
+        'id' => $id,
+    ]);
 
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Pelanggan berhasil diperbarui.'];
-header('Location: list.php');
-exit;
+    $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Pelanggan berhasil diperbarui.'];
+    header('Location: list.php');
+    exit;
+} catch (PDOException $e) {
+    if ($e->getCode() == '23505') {
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'No. Pelanggan sudah digunakan.'];
+    } else {
+        error_log($e->getMessage());
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Maaf, terjadi kesalahan sistem saat mengupdate data.'];
+    }
+    header('Location: edit.php?id=' . urlencode($id));
+    exit;
+}

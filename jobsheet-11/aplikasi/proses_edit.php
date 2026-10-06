@@ -1,9 +1,8 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
-require __DIR__ . '/../includes/csrf.php'; // Proteksi CSRF
+require __DIR__ . '/../includes/csrf.php';
 require __DIR__ . '/../includes/koneksi.php';
 
-// Memverifikasi kecocokan token dari form sebelum memproses data
 csrf_verify();
 
 $id = $_POST['id'] ?? null;
@@ -41,7 +40,6 @@ try {
         'deskripsi' => $deskripsi,
         'id'        => $id
     ]);
-
     $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Aplikasi berhasil diperbarui.'];
     header('Location: list.php');
     exit;
@@ -49,7 +47,8 @@ try {
     if ($e->getCode() == '23505') {
         $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Kode App "' . htmlspecialchars($kodeApp) . '" Sudah Digunakan.'];
     } else {
-        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal mengupdate: ' . $e->getMessage()];
+        error_log($e->getMessage());
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Maaf, terjadi kesalahan sistem saat mengupdate data.'];
     }
     header('Location: edit.php?id=' . urlencode($id));
     exit;

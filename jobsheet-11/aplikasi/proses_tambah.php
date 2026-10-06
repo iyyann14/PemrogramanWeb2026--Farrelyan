@@ -3,7 +3,6 @@ require __DIR__ . '/../includes/auth.php';
 require __DIR__ . '/../includes/csrf.php';
 require __DIR__ . '/../includes/koneksi.php';
 
-// Verifikasi Token CSRF
 csrf_verify();
 
 $kodeApp = trim($_POST['kode_app'] ?? '');
@@ -43,7 +42,8 @@ try {
     if ($e->getCode() == '23505') {
         $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Kode App "' . htmlspecialchars($kodeApp) . '" Sudah Digunakan. Silakan Gunakan Kode Lain.'];
     } else {
-        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menyimpan: ' . $e->getMessage()];
+        error_log($e->getMessage()); // Simpan log error secara diam-diam
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Maaf, terjadi kesalahan sistem saat menyimpan data.'];
     }
     header('Location: tambah.php');
     exit;

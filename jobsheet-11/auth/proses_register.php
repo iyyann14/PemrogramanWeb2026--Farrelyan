@@ -7,10 +7,9 @@ require __DIR__ . '/../includes/koneksi.php';
 $nama = trim($_POST['nama'] ?? '');
 $username = trim($_POST['username'] ?? '');
 $password = $_POST['password'] ?? '';
-$role = trim($_POST['role'] ?? 'pelanggan'); // Mengambil role dari form, default ke 'pelanggan'
+$role = trim($_POST['role'] ?? 'pelanggan');
 
 $errors = [];
-
 if ($nama === '') {
     $errors[] = "Nama wajib diisi.";
 }
@@ -21,10 +20,9 @@ if (strlen($password) < 6) {
     $errors[] = "Password minimal 6 karakter.";
 }
 
-// Validasi keamanan: pastikan role yang dikirimkan hanya 'pelanggan' atau 'admin'
 $allowed_roles = ['pelanggan', 'admin'];
 if (!in_array($role, $allowed_roles)) {
-    $role = 'pelanggan'; // Fallback aman jika role dimanipulasi dari sisi klien
+    $role = 'pelanggan';
 }
 
 if (!empty($errors)) {
@@ -33,7 +31,6 @@ if (!empty($errors)) {
     exit;
 }
 
-// Cek apakah username sudah terdaftar
 $cek = $pdo->prepare("SELECT id FROM users WHERE username = :username");
 $cek->execute(['username' => $username]);
 if ($cek->fetch()) {
@@ -57,7 +54,8 @@ try {
     header('Location: login.php');
     exit;
 } catch (PDOException $e) {
-    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal registrasi: ' . $e->getMessage()];
+    error_log($e->getMessage()); // Simpan log error secara diam-diam
+    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Maaf, terjadi kesalahan sistem saat memproses registrasi.'];
     header('Location: register.php');
     exit;
 }
