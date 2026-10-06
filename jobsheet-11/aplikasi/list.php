@@ -66,7 +66,7 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
                         <tr>
                             <!-- Seluruh output dibungkus fungsi e() -->
                             <td><?php echo e($app['kode_app']); ?></td>
-                            <td><?php echo ($app['nama_app']); ?></td>
+                            <td><?php echo e($app['nama_app']); ?></td>
                             <td><?php echo e($app['kategori']); ?></td>
                             <td>Rp <?php echo number_format($app['harga'], 0, ',', '.'); ?></td>
                             <td><?php echo e($app['deskripsi']); ?></td>
