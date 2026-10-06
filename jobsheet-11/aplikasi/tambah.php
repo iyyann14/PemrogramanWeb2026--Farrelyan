@@ -14,7 +14,7 @@ unset($_SESSION['flash']);
         <?php echo csrf_field(); ?>
         <p>
             <label for="kode_app">Kode App</label><br>
-            <input type="text" id="kode_app" name="kode_app" placeholder="Contoh: APP001">
+            <input type="text" id="kode_app" name="kode_app" placeholder="Contoh: APP001" required>
         </p>
         <p>
             <label for="nama_app">Nama Aplikasi</label><br>
