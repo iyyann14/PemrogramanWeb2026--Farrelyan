@@ -3,6 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';");
+
 // WAJIB ADA: Memuat fungsi keamanan untuk digunakan di seluruh halaman
 require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/csrf.php';
