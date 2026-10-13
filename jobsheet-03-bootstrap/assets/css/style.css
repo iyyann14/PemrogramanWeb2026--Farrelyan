@@ -1,0 +1,41 @@
+/* Custom Override untuk menyesuaikan skema warna Toko Aplikasi Premium di atas framework Bootstrap */
+body {
+    background-color: #f4f0f7;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.custom-bg-dark {
+    background-color: #2b1b3d !important;
+}
+
+.text-custom-purple {
+    color: #2b1b3d !important;
+}
+
+.custom-border-card {
+    border-left: 5px solid #7b1fa2 !important;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    background-color: #9d4edd !important;
+    border-radius: 6px;
+    color: #fff !important;
+}
+
+.btn-custom {
+    background-color: #9d4edd !important;
+    transition: background-color 0.2s ease;
+}
+
+.btn-custom:hover {
+    background-color: #7b1fa2 !important;
+}
+
+/* Memastikan warna putih di header thead tabel custom-bg-dark */
+.custom-bg-dark th {
+    background-color: transparent;
+    color: #fff;
+}
