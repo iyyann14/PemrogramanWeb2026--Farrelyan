@@ -7,134 +7,144 @@
 
 body {
     font-family: "Segoe UI", Arial, sans-serif;
-    color: #2b2b2b;
-    background-color: #f5f6f8;
+    background-color: #f4f0f7;
+    color: #333;
     line-height: 1.5;
 }
 
 a {
-    color: #1d5b8a;
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
-/* ===== Header & Navbar (Flexbox) ===== */
+/* ===== Header & Navbar ===== */
 header {
-    background-color: #1d5b8a;
-    color: #fff;
-    padding: 1rem 1.5rem;
+    background-color: #2b1b3d;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-header h1 {
-    font-size: 1.4rem;
+.header-titles {
+    text-align: left;
+    padding: 2rem 2.5rem;
+    color: #fff;
+}
+
+.header-titles h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.header-titles p {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #d8cce6;
+}
+
+header nav {
+    background-color: #3b2553;
+    display: flex;
+    justify-content: center;
+    padding: 0.8rem 1rem;
 }
 
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 1.25rem;
+    gap: 1rem;
 }
 
 header nav a {
     color: #fff;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover,
+header nav a.active {
+    background-color: #9d4edd;
+    box-shadow: 0 2px 8px rgba(157, 78, 221, 0.4);
 }
 
 /* ===== Main Layout ===== */
 main {
+    background-color: #fff;
     max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
+    margin: 3rem auto;
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(43, 27, 61, 0.08);
 }
 
 section {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2.5rem;
 }
 
 section h2 {
-    margin-bottom: 1rem;
-    color: #1d5b8a;
+    color: #2b1b3d;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    position: relative;
+}
+
+section h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 65px;
+    height: 5px;
+    background: linear-gradient(90deg, #9d4edd, #e0c3fc);
+    border-radius: 10px;
+}
+
+section p {
+    color: #4a4a4a;
 }
 
 /* ===== Kartu Statistik (CSS Grid) ===== */
 main section:nth-of-type(2) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 1.5rem;
+}
+
+main section:nth-of-type(2) h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 1.5rem;
 }
 
 main section:nth-of-type(2) article {
-    background-color: #eef4fa;
+    background-color: #faf8fc;
+    border: 1px solid #e4dced;
+    border-left: 5px solid #7b1fa2;
     border-radius: 8px;
-    padding: 1.25rem;
-    text-align: center;
+    padding: 1.5rem;
+    text-align: left;
+    transition: transform 0.2s ease;
+}
+
+main section:nth-of-type(2) article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(123, 31, 162, 0.1);
 }
 
 main section:nth-of-type(2) article h3 {
-    font-size: 0.95rem;
-    color: #55677a;
-    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: #6a4a87;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
 }
 
 main section:nth-of-type(2) article p {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    color: #1d5b8a;
-}
-
-/* ===== Tabel ===== */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    text-align: left;
-    padding: 0.65rem 0.75rem;
-    border-bottom: 1px solid #e2e6ea;
-}
-
-thead {
-    background-color: #1d5b8a;
-    color: #fff;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f7f9fb;
-}
-
-tbody tr:hover {
-    background-color: #eef4fa;
-}
-
-td button {
-    padding: 0.35rem 0.7rem;
-    margin-right: 0.35rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85rem;
-}
-
-td button:first-of-type {
-    background-color: #f0ad4e;
-    color: #fff;
-}
-
-td button:last-of-type {
-    background-color: #d9534f;
-    color: #fff;
+    color: #3b2553;
 }
 
 /* ===== Form ===== */
@@ -143,7 +153,7 @@ form p {
 }
 
 form label {
-    display: block;
+    display: inline-block;
     margin-bottom: 0.35rem;
     font-weight: 600;
     color: #444;
@@ -152,89 +162,158 @@ form label {
 form input,
 form select {
     width: 100%;
-    max-width: 400px;
-    padding: 0.55rem 0.7rem;
+    max-width: 500px;
+    padding: 0.65rem;
     border: 1px solid #cdd4da;
     border-radius: 4px;
     font-size: 1rem;
 }
 
 form button[type="submit"] {
-    background-color: #1d5b8a;
+    background-color: #9d4edd;
     color: #fff;
     border: none;
-    padding: 0.6rem 1.5rem;
+    padding: 0.7rem 1.5rem;
     border-radius: 4px;
     font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 form button[type="submit"]:hover {
-    background-color: #164869;
+    background-color: #7b1fa2;
 }
 
-/* ===== Footer ===== */
-footer {
-    text-align: center;
-    padding: 1.25rem;
-    color: #7a8794;
-    font-size: 0.9rem;
-}
-
-/* ===== Tabel Responsif ===== */
+/* ===== Tabel Data ===== */
 .table-responsive {
     overflow-x: auto;
 }
 
-/* ===== Hamburger Menu (checkbox hack) ===== */
-.nav-toggle {
-    display: none;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
 }
 
+td {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid #e2e6ea;
+}
+
+thead {
+    background-color: #2b1b3d;
+    color: #fff;
+}
+
+th {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    padding: 0.85rem 1rem;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f6fc;
+}
+
+tbody tr:hover {
+    background-color: #f1eaf7;
+}
+
+td button {
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+td button.btn-edit {
+    background-color: #9d4edd;
+    color: #fff;
+    margin-right: 0.3rem;
+}
+
+td button.btn-hapus {
+    background-color: #e63946;
+    color: #fff;
+}
+
+/* ===== Footer ===== */
+footer {
+    background-color: #2b1b3d;
+    text-align: center;
+    padding: 1.5rem;
+    color: #a996bd;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+}
+
+/* ===== Hamburger Menu ===== */
+.nav-toggle,
 .nav-toggle-label {
     display: none;
-    font-size: 1.6rem;
-    color: #fff;
-    cursor: pointer;
 }
 
-/* ===== Responsive Breakpoints ===== */
-
-/* Tablet ke bawah */
+/* ===== Breakpoints ===== */
 @media (max-width: 768px) {
     main section:nth-of-type(2) {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
     header {
         position: relative;
     }
 
+    .header-titles {
+        padding-right: 3rem;
+        padding-left: 1.5rem;
+    }
+
     .nav-toggle-label {
         display: block;
+        font-size: 1.6rem;
+        color: #fff;
+        cursor: pointer;
+        position: absolute;
+        top: 2rem;
+        right: 1.5rem;
     }
 
     header nav {
         display: none;
         width: 100%;
-        order: 3;
-        margin-top: 1rem;
     }
 
-    .nav-toggle:checked ~ nav {
+    .nav-toggle:checked~nav {
         display: block;
     }
 
     header nav ul {
         flex-direction: column;
-        gap: 0.75rem;
+        width: 100%;
+        text-align: left;
+        gap: 0.5rem;
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    header nav a {
+        display: block;
     }
 
     main section:nth-of-type(2) {
         grid-template-columns: 1fr;
+    }
+
+    main {
+        margin: 1rem;
+        padding: 1.5rem;
     }
 
     form input,

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toko Aplikasi Premium | Tambah Aplikasi</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-titles">
+            <h1>Toko Aplikasi Premium</h1>
+            <p>Web Pengelola Data Aplikasi Premium Online</p>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="list.html">Data Aplikasi</a></li>
+                <li><a href="tambah.html" class="active">Tambah Aplikasi</a></li>
+                <li><a href="../pelanggan/list.html">Data Pelanggan</a></li>
+                <li><a href="../login.html">Login Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Tambah Aplikasi Baru</h2>
+            <form>
+                <p>
+                    <label for="nama_app">Nama Aplikasi</label><br>
+                    <input type="text" id="nama_app" name="nama_app" required>
+                </p>
+                <p>
+                    <label for="kategori">Lisensi / Kategori</label><br>
+                    <select id="kategori" name="kategori">
+                        <option value="1_bulan">1 Bulan</option>
+                        <option value="6_bulan">6 Bulan</option>
+                        <option value="lifetime">Seumur Hidup</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="harga">Harga (Rp)</label><br>
+                    <input type="number" id="harga" name="harga" required>
+                </p>
+                <p>
+                    <button type="submit">Simpan Aplikasi</button>
+                </p>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Sistem Informasi Penjualan Aplikasi &mdash; Jobsheet 4</p>
+    </footer>
+</body>
+
+</html>
