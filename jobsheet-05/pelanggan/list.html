@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toko Aplikasi Premium | Data Pelanggan</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-titles">
+            <h1>Toko Aplikasi Premium</h1>
+            <p>Web Pengelola Data Pelanggan</p>
+        </div>
+        <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="../aplikasi/list.html">Data Aplikasi</a></li>
+                <li><a href="../aplikasi/tambah.html">Tambah Aplikasi</a></li>
+                <li><a href="list.html">Data Pelanggan</a></li>
+                <li><a href="tambah.html">Tambah Pelanggan</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Daftar Pelanggan Aktif</h2>
+            <div class="search-box">
+                <label for="search-input">Cari Nama Pelanggan</label>
+                <input type="text" id="search-input" placeholder="Ketik nama pelanggan...">
+            </div>
+            <p id="counter-baris"></p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Pelanggan</th>
+                            <th>Nama Lengkap</th>
+                            <th>Kota</th>
+                            <th>No. WhatsApp</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CUST001</td>
+                            <td>Reza Pahlevi</td>
+                            <td>Surabaya</td>
+                            <td>0812345678</td>
+                            <td>
+                                <button type="button">Edit</button>
+                                <button type="button" class="btn-hapus">Hapus</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CUST002</td>
+                            <td>Dewi Lestari</td>
+                            <td>Malang</td>
+                            <td>0856789012</td>
+                            <td>
+                                <button type="button">Edit</button>
+                                <button type="button" class="btn-hapus">Hapus</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Toko Aplikasi Premium &mdash; Jobsheet 5</p>
+    </footer>
+    <script src="../assets/js/app.js"></script>
+</body>
+
+</html>

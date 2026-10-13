@@ -7,13 +7,13 @@
 
 body {
     font-family: "Segoe UI", Arial, sans-serif;
-    color: #2b2b2b;
-    background-color: #f5f6f8;
+    color: #2b1b3d;
+    background-color: #f4f0f7;
     line-height: 1.5;
 }
 
 a {
-    color: #1d5b8a;
+    color: #9d4edd;
     text-decoration: none;
 }
 
@@ -23,7 +23,7 @@ a:hover {
 
 /* ===== Header & Navbar (Flexbox) ===== */
 header {
-    background-color: #1d5b8a;
+    background-color: #2b1b3d;
     color: #fff;
     padding: 1rem 1.5rem;
     display: flex;
@@ -32,8 +32,13 @@ header {
     flex-wrap: wrap;
 }
 
-header h1 {
+.header-titles h1 {
     font-size: 1.4rem;
+}
+
+.header-titles p {
+    font-size: 0.9rem;
+    color: #d8cce6;
 }
 
 header nav ul {
@@ -45,6 +50,11 @@ header nav ul {
 header nav a {
     color: #fff;
     font-weight: 500;
+}
+
+header nav a:hover,
+header nav a.active {
+    color: #e0c3fc;
 }
 
 /* ===== Main Layout ===== */
@@ -59,12 +69,12 @@ section {
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(43, 27, 61, 0.08);
 }
 
 section h2 {
     margin-bottom: 1rem;
-    color: #1d5b8a;
+    color: #2b1b3d;
 }
 
 /* ===== Kartu Statistik (CSS Grid) ===== */
@@ -75,22 +85,23 @@ main section:nth-of-type(2) {
 }
 
 main section:nth-of-type(2) article {
-    background-color: #eef4fa;
+    background-color: #faf8fc;
     border-radius: 8px;
     padding: 1.25rem;
     text-align: center;
+    border: 1px solid #e4dced;
 }
 
 main section:nth-of-type(2) article h3 {
     font-size: 0.95rem;
-    color: #55677a;
+    color: #6a4a87;
     margin-bottom: 0.5rem;
 }
 
 main section:nth-of-type(2) article p {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #1d5b8a;
+    color: #2b1b3d;
 }
 
 /* ===== Tabel ===== */
@@ -99,23 +110,24 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     text-align: left;
     padding: 0.65rem 0.75rem;
     border-bottom: 1px solid #e2e6ea;
 }
 
 thead {
-    background-color: #1d5b8a;
+    background-color: #2b1b3d;
     color: #fff;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f7f9fb;
+    background-color: #f9f6fc;
 }
 
 tbody tr:hover {
-    background-color: #eef4fa;
+    background-color: #f1eaf7;
 }
 
 td button {
@@ -128,12 +140,12 @@ td button {
 }
 
 td button:first-of-type {
-    background-color: #f0ad4e;
+    background-color: #9d4edd;
     color: #fff;
 }
 
 td button:last-of-type {
-    background-color: #d9534f;
+    background-color: #e63946;
     color: #fff;
 }
 
@@ -160,7 +172,7 @@ form select {
 }
 
 form button[type="submit"] {
-    background-color: #1d5b8a;
+    background-color: #9d4edd;
     color: #fff;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -170,7 +182,7 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: #164869;
+    background-color: #7b1fa2;
 }
 
 /* ===== Footer ===== */
@@ -199,7 +211,7 @@ footer {
 /* ===== Pesan Error Validasi ===== */
 .error {
     display: block;
-    color: #d9534f;
+    color: #e63946;
     font-size: 0.85rem;
     margin-top: 0.25rem;
 }
@@ -218,15 +230,12 @@ footer {
 }
 
 /* ===== Responsive Breakpoints ===== */
-
-/* Tablet ke bawah */
 @media (max-width: 768px) {
     main section:nth-of-type(2) {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
     header {
         position: relative;
@@ -269,8 +278,9 @@ footer {
         margin-top: 0;
         transition: max-height 0.3s ease-in-out, margin-top 0.3s ease-in-out;
     }
+
     header nav.nav-open {
-        max-height: 300px; 
+        max-height: 300px;
         margin-top: 1rem;
     }
 }
